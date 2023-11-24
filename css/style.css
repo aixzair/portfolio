@@ -12,10 +12,14 @@
 body {
     overflow-y: scroll;
     font-family: 'Roboto', sans-serif;
+}
+
+/* ___________________________ Header ____________________________*/
+
+header {
     color: var(--color-text);
 }
 
-/* ___________________________ Menu ____________________________*/
 nav {
     display: flex;
     flex-direction: row;
@@ -54,6 +58,19 @@ nav a.actif {
     color: var(--color-text); 
 }
 
+/* _____________________________ Menu __________________________________*/
+
+.menuDeuxPartie {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-item {
+    width: 40%;
+}
+
 /* _____________________________ Projets ________________________________*/
 #projets {
     display: flex;
@@ -62,6 +79,8 @@ nav a.actif {
     padding: 20px;
     max-width: 1620px;
     margin: auto;
+    
+    color: var(--color-text);
 }
 
 .projet {
@@ -104,6 +123,22 @@ nav a.actif {
 .carte-verso {
     background-color: #185d36;
     transform: rotateX(180deg);
+}
+
+/* _____________________________ Profil ________________________________*/
+
+#profil-contenue {
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profilAvatar {
+    max-width: 100%;
+    width: 200px;
+    height: auto;
 }
 
 /* ___________________________ Media Queries ______________________________*/
