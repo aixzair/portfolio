@@ -8,6 +8,7 @@
 document.querySelectorAll('script').forEach(function(script) {
     if (script.src.startsWith(window.location.origin)) {
         script.src = getPath() + script.src;
+        console.log(script.src + " evenement");
     }
 });
 
@@ -15,6 +16,7 @@ document.querySelectorAll('script').forEach(function(script) {
 document.querySelectorAll('link').forEach(function(link) {
     if (link.href.startsWith(window.location.origin)) {
         link.href = getPath() + link.pathname + link.search + link.hash;
+        console.log(link.href + " link");
     }
 });
 
