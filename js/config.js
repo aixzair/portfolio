@@ -4,6 +4,8 @@
 
 /* ---------------------------- Actions ------------------------------ */
 
+console.log("debug");
+
 // ajuste les script
 document.querySelectorAll('script').forEach(function(script) {
     if (script.src.startsWith(window.location.origin)) {
@@ -37,6 +39,7 @@ document.addEventListener('load', function() {
  * @returns boolean
  */
 function isGitHubPages() {
+    console.log("test");
     return window.location.hostname.endsWith('github.io');
 }
 
