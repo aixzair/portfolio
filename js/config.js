@@ -17,7 +17,7 @@ document.querySelectorAll('script').forEach(function(script) {
 // ajuste les liens
 document.querySelectorAll('link').forEach(function(link) {
     if (link.href.startsWith(window.location.origin)) {
-        link.href = getPath() + link.pathname + link.search + link.hash;
+        link.href = getPath() + link.href;
         console.log(link.href + " link");
     }
 });
