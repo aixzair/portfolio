@@ -4,21 +4,19 @@
 
 /* ---------------------------- Actions ------------------------------ */
 
-console.log("debug");
-
 // ajuste les script
 document.querySelectorAll('script').forEach(function(script) {
     if (script.src.startsWith(window.location.origin)) {
-        script.src = getPath() + script.src.substring(window.location.origin.length);
-        console.log(script.src + " evenement");
+        const path = script.src.substring(window.location.origin.length);
+        script.src = path.startsWith(getReelPath()) ? path : getReelPath() + path;
     }
 });
 
 // ajuste les liens
 document.querySelectorAll('link').forEach(function(link) {
     if (link.href.startsWith(window.location.origin)) {
-        link.href = getPath() + link.href.substring(window.location.origin.length);
-        console.log(link.href + " link");
+        const path = link.href.substring(window.location.origin.length);
+        link.href = path.startsWith(getReelPath()) ? path : getReelPath() + path;
     }
 });
 
@@ -27,7 +25,7 @@ document.querySelectorAll('link').forEach(function(link) {
 document.addEventListener('load', function() {
     document.querySelectorAll('a').forEach(function(link) {
         if (link.href.startsWith(window.location.origin)) {
-            link.href = getPath() + link.pathname + link.search + link.hash;
+            link.href = getReelPath() + link.pathname + link.search + link.hash;
         }
     });
 });
@@ -39,7 +37,6 @@ document.addEventListener('load', function() {
  * @returns boolean
  */
 function isGitHubPages() {
-    console.log("test");
     return window.location.hostname.endsWith('github.io');
 }
 
@@ -47,6 +44,6 @@ function isGitHubPages() {
  * Revoie le liens symbolique
  * @returns le lien
  */
-function getPath() {
+function getReelPath() {
     return isGitHubPages() ? '/portfolio' : '';
 }
