@@ -9,7 +9,7 @@ console.log("debug");
 // ajuste les script
 document.querySelectorAll('script').forEach(function(script) {
     if (script.src.startsWith(window.location.origin)) {
-        script.src = getPath() + script.src;
+        script.src = getPath() + script.src.substring(window.location.origin.length);
         console.log(script.src + " evenement");
     }
 });
@@ -17,7 +17,7 @@ document.querySelectorAll('script').forEach(function(script) {
 // ajuste les liens
 document.querySelectorAll('link').forEach(function(link) {
     if (link.href.startsWith(window.location.origin)) {
-        link.href = getPath() + link.href;
+        link.href = getPath() + link.href.substring(window.location.origin.length);
         console.log(link.href + " link");
     }
 });
