@@ -20,8 +20,15 @@ document.querySelectorAll('link').forEach(function(link) {
     }
 });
 
+if (getReelPath() !== '') {
+    console.clear();
+    reloadScripts();
+    console.log("Chargement effectué avec succès.")
+}
+
 /* ---------------------------- Evenements --------------------------- */
 
+// ajuste les liens a
 document.addEventListener('load', function() {
     document.querySelectorAll('a').forEach(function(link) {
         if (link.href.startsWith(window.location.origin)) {
@@ -46,4 +53,21 @@ function isGitHubPages() {
  */
 function getReelPath() {
     return isGitHubPages() ? '/portfolio' : '';
+}
+
+/**
+ * Recharge les autres script de la pages
+ */
+function reloadScripts() {
+    const scripts = document.querySelectorAll('script');
+    const scriptActuel = document.currentScript;
+
+    scripts.forEach(function(script) {
+        if (script !== scriptActuel) {
+            const nouveauScript = document.createElement('script');
+            nouveauScript.src = script.src;
+            nouveauScript.defer = script.defer;
+            document.head.appendChild(nouveauScript);
+        }
+    });
 }
