@@ -22,11 +22,11 @@ document.querySelectorAll('link').forEach(function(link) {
     }
 });
 
-/*if (getReelPath() !== '') {
+if (getReelPath() !== '') {
     // console.clear();
     reloadScripts();
     console.log("Chargement effectué avec succès.")
-}*/
+}
 
 /* ---------------------------- Evenements --------------------------- */
 
