@@ -2,7 +2,7 @@
 const HEADER = document.querySelector('header');
 
 // ------------------------------ Actions --------------------------------------
-
+console.log("c");
 fabriquerheader();
 
 // ------------------------------ Fonctions ------------------------------------

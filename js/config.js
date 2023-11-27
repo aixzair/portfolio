@@ -5,13 +5,19 @@
 /* ---------------------------- Actions ------------------------------ */
 
 // ajuste les script
+console.log("a");
+let i = 1;
 document.querySelectorAll('script').forEach(function(script) {
     if (script.src.startsWith(window.location.origin)) {
         const path = script.src.substring(window.location.origin.length);
         const reelPath = getReelPath();
         script.src = path.startsWith(getReelPath()) ? path : reelPath + path;
+        console.log("i = " + i);
+        console.log("path = " + path);
+        i++;
     }
 });
+console.log("b");
 
 // ajuste les liens
 document.querySelectorAll('link').forEach(function(link) {
@@ -22,6 +28,7 @@ document.querySelectorAll('link').forEach(function(link) {
     }
 });
 
+console.log("d");
 if (getReelPath() !== '') {
     // console.clear();
     reloadScripts();
