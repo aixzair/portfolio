@@ -10,11 +10,11 @@ document.querySelectorAll('script').forEach(function(script) {
         const path = script.src.substring(window.location.origin.length);
         const reelPath = getReelPath();
         script.src = path.startsWith(getReelPath()) ? path : reelPath + path;
-        console.log("path = " + path);
     }
 });
 
 if (getReelPath() !== '') {
+    console.clear();
     reloadScripts();
     console.log("Chargement effectué avec succès.")
 }
@@ -25,6 +25,15 @@ document.querySelectorAll('link').forEach(function(link) {
         const path = link.href.substring(window.location.origin.length);
         const reelPath = getReelPath();
         link.href = path.startsWith(reelPath) ? path : reelPath + path;
+    }
+});
+
+// ajuste les images -------------------------------------------------------
+document.querySelectorAll('img').forEach(function(img) {
+    if (img.src.startsWith(window.location.origin)) {
+        const path = img.src.substring(window.location.origin.length);
+        const reelPath = getReelPath();
+        img.src = path.startsWith(reelPath) ? path : reelPath + path;
     }
 });
 
@@ -78,21 +87,21 @@ function reloadScripts() {
 function mutations(mutations, observer) {
     for (const mutation of mutations) {
         if (mutation.type === 'childList') {
-            const elements = Array.from(mutation.addedNodes);
-
-            console.log("Nouveaux éléments détectés :", elements);
-            modifierEnfants(elements);
+            modifierEnfants(Array.from(mutation.addedNodes));
         }
     }
 }
 
+/**
+ * Ajuste récursivevment les url des liens (a)
+ * @param {*} enfants 
+ */
 function modifierEnfants(enfants) {
     for (const enfant of enfants) {
         if (enfant instanceof HTMLAnchorElement) {
             const a = enfant;
             if (a.href.startsWith(window.location.origin)) {
                 a.href = getReelPath() + a.pathname + a.search + a.hash;
-                console.log("a = ", a.href);
             }
         }
     
