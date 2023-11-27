@@ -4,7 +4,7 @@
 
 /* ---------------------------- Actions ------------------------------ */
 
-// ajuste les script
+// ajuste les script ----------------------------------------------------
 console.log("a");
 let i = 1;
 document.querySelectorAll('script').forEach(function(script) {
@@ -19,7 +19,15 @@ document.querySelectorAll('script').forEach(function(script) {
 });
 console.log("b");
 
-// ajuste les liens
+if (getReelPath() !== '') {
+    // console.clear();
+    reloadScripts();
+    console.log("Chargement effectué avec succès.")
+}
+console.log("d");
+
+
+// ajuste les liens (link) -------------------------------------------------
 document.querySelectorAll('link').forEach(function(link) {
     if (link.href.startsWith(window.location.origin)) {
         const path = link.href.substring(window.location.origin.length);
@@ -28,23 +36,10 @@ document.querySelectorAll('link').forEach(function(link) {
     }
 });
 
-console.log("d");
-if (getReelPath() !== '') {
-    // console.clear();
-    reloadScripts();
-    console.log("Chargement effectué avec succès.")
-}
-
-/* ---------------------------- Evenements --------------------------- */
-
-// ajuste les liens a
-document.addEventListener('load', function() {
-    document.querySelectorAll('a').forEach(function(link) {
-        if (link.href.startsWith(window.location.origin)) {
-            link.href = getReelPath() + link.pathname + link.search + link.hash;
-        }
-    });
-});
+// ajuste les liens (a)
+const observer = new MutationObserver(handleMutation);
+const observerConfig = { childList: true, subtree: true };
+observer.observe(document.body, observerConfig);
 
 /* ---------------------------- Fonctions ---------------------------- */
 
@@ -76,7 +71,33 @@ function reloadScripts() {
             const nouveauScript = document.createElement('script');
             nouveauScript.src = script.src;
             nouveauScript.defer = script.defer;
+
             document.head.appendChild(nouveauScript);
+            document.head.removeChild(script);
         }
     });
+}
+
+/**
+ * Modifie les liens a dès qu'il sont ajouté dans le dom
+ * @param {*} mutationsList 
+ * @param {*} observer 
+ */
+function handleMutation(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            const addedElements = Array
+                .from(mutation.addedNodes)
+                .filter( node => node.tagName && node.tagName.toLowerCase() === 'a')
+            ;
+
+            if (addedElements.length > 0) {
+                for (const a of addedElements) {
+                    if (a.href.startsWith(window.location.origin)) {
+                        a.href = getReelPath() + a.pathname + a.search + a.hash;
+                    }
+                }
+            }
+        }
+    }
 }
