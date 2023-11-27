@@ -8,7 +8,8 @@
 document.querySelectorAll('script').forEach(function(script) {
     if (script.src.startsWith(window.location.origin)) {
         const path = script.src.substring(window.location.origin.length);
-        script.src = path.startsWith(getReelPath()) ? path : getReelPath() + path;
+        const reelPath = getReelPath();
+        script.src = path.startsWith(getReelPath()) ? path : reelPath + path;
     }
 });
 
@@ -16,15 +17,16 @@ document.querySelectorAll('script').forEach(function(script) {
 document.querySelectorAll('link').forEach(function(link) {
     if (link.href.startsWith(window.location.origin)) {
         const path = link.href.substring(window.location.origin.length);
-        link.href = path.startsWith(getReelPath()) ? path : getReelPath() + path;
+        const reelPath = getReelPath();
+        link.href = path.startsWith(reelPath) ? path : reelPath + path;
     }
 });
 
-if (getReelPath() !== '') {
-    console.clear();
+/*if (getReelPath() !== '') {
+    // console.clear();
     reloadScripts();
     console.log("Chargement effectué avec succès.")
-}
+}*/
 
 /* ---------------------------- Evenements --------------------------- */
 
