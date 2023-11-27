@@ -8,11 +8,12 @@ Auteur : Alexandre Lerosier
 
 ## 👨‍💻 Utilisation
 
-Ouvrez le lien : LIEN------------------------------
+Encore en développement.
+Ouvrez le lien : https://aixzair.github.io/portfolio/
 
 ## 🙏 Crédits
 
-* @princecorg pour ça maquette de portfolio
+* @princecorg pour sa maquette de portfolio
 
 ## 📬 Contact
 
