@@ -5,27 +5,19 @@
 /* ---------------------------- Actions ------------------------------ */
 
 // ajuste les script ----------------------------------------------------
-console.log("a");
-let i = 1;
 document.querySelectorAll('script').forEach(function(script) {
     if (script.src.startsWith(window.location.origin)) {
         const path = script.src.substring(window.location.origin.length);
         const reelPath = getReelPath();
         script.src = path.startsWith(getReelPath()) ? path : reelPath + path;
-        console.log("i = " + i);
         console.log("path = " + path);
-        i++;
     }
 });
-console.log("b");
 
 if (getReelPath() !== '') {
-    // console.clear();
     reloadScripts();
     console.log("Chargement effectué avec succès.")
 }
-console.log("d");
-
 
 // ajuste les liens (link) -------------------------------------------------
 document.querySelectorAll('link').forEach(function(link) {
@@ -37,7 +29,7 @@ document.querySelectorAll('link').forEach(function(link) {
 });
 
 // ajuste les liens (a)
-const observer = new MutationObserver(handleMutation);
+const observer = new MutationObserver(mutations);
 const observerConfig = { childList: true, subtree: true };
 observer.observe(document.body, observerConfig);
 
@@ -83,21 +75,27 @@ function reloadScripts() {
  * @param {*} mutationsList 
  * @param {*} observer 
  */
-function handleMutation(mutationsList, observer) {
-    for (const mutation of mutationsList) {
+function mutations(mutations, observer) {
+    for (const mutation of mutations) {
         if (mutation.type === 'childList') {
-            const addedElements = Array
-                .from(mutation.addedNodes)
-                .filter( node => node.tagName && node.tagName.toLowerCase() === 'a')
-            ;
+            const elements = Array.from(mutation.addedNodes);
 
-            if (addedElements.length > 0) {
-                for (const a of addedElements) {
-                    if (a.href.startsWith(window.location.origin)) {
-                        a.href = getReelPath() + a.pathname + a.search + a.hash;
-                    }
-                }
+            console.log("Nouveaux éléments détectés :", elements);
+            modifierEnfants(elements);
+        }
+    }
+}
+
+function modifierEnfants(enfants) {
+    for (const enfant of enfants) {
+        if (enfant instanceof HTMLAnchorElement) {
+            const a = enfant;
+            if (a.href.startsWith(window.location.origin)) {
+                a.href = getReelPath() + a.pathname + a.search + a.hash;
+                console.log("a = ", a.href);
             }
         }
+    
+        modifierEnfants(enfant.childNodes);
     }
 }
