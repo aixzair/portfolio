@@ -90,6 +90,11 @@ nav a.actif {
     color: var(--color-text);
 }
 
+#projets a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .projet {
     background-color: transparent;
     width: 30%;
