@@ -14,11 +14,36 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.align-center {
+    align-items: center;
+}
+
 .contenue {
     margin-top: 50px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+section {
+    margin-top: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+p {
+    text-align: justify;
+}
+
+li {
+    margin-bottom: 2px;
 }
 
 /* ___________________________ Header ____________________________*/
@@ -65,7 +90,7 @@ nav a.actif {
     color: var(--color-text); 
 }
 
-/* _____________________________ Menu __________________________________*/
+/* ___________________________ Menu _______________________________*/
 
 .menuDeuxPartie {
     display: flex;
