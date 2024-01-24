@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" href="./images/icon.png" type="image/x-icon" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+    <link rel="icon" href="/images/icon.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Portfolio</title>
+    <title>Porfil</title>
 
     <link rel="stylesheet" href="./css/style.css"/>
 
@@ -13,80 +13,24 @@
     <script defer src="./js/header.js"></script>
 </head>
 <body>
-    <header data-actif="Accueil"></header>
+    <header data-actif="Profil"></header>
 
-    <main>
-        <section id="projets">
-            <div class="projet" id="projet1">
-                <a href="./pages/projets/pomodoro.html">
-                    <div class="carte">
-                        <div class="carte-recto">
-                            <h2>Pomodoro</h2>
-                        </div>
-                        <div class="carte-verso">
-                            <h2>Un outils pour gérer votre temps de travail et de repos</h2>
-                        </div>
-                    </div>
-                </a>
-            </div>
+    <section class="contenue align-center">
+        <h1>Alexandre Lerosier</h1>
 
-            <div class="projet" id="projet2">
-                <div class="carte">
-                    <div class="carte-recto">
-                        <h2>Instant weather</h2>
-                    </div>
-                    <div class="carte-verso">
-                        <h2>Description du projet</h2>
-                    </div>
-                </div>
+        <div class="menuDeuxPartie">
+            <div class="menu-item">
+                <img src="./../images/profil_avatar.png" alt="avatar profil" id="profilAvatar">
             </div>
-
-            <div class="projet" id="projet3">
-                <div class="carte">
-                    <div class="carte-recto">
-                        <h2>P'tit cuisto</h2>
-                    </div>
-                    <div class="carte-verso">
-                        <h2>Description du projet</h2>
-                    </div>
-                </div>
+            <div class="menu-item">
+                <p>
+                    Né le 3 décembre 2004, je suis développeur en formation, actuellement en deuxième année de mon cursus en informatique à Caen.
+                    J'ai déjà réalisé de nombreux projets dans le domaine du web, des bases de données et des applications en Java et en langage C,
+                    que ce soit en autonomie ou en collaboration au sein d'une équipe.
+                </p>
             </div>
-
-            <div class="projet" id="projet4">
-                <div class="carte">
-                    <div class="carte-recto">
-                        <h2>Jeu de go</h2>
-                    </div>
-                    <div class="carte-verso">
-                        <h2>Description du projet</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="projet" id="projet5">
-                <a href="./pages/projets/goblbetGobblers.html">
-                    <div class="carte">
-                        <div class="carte-recto">
-                            <h2>Gobblet gobblers</h2>
-                        </div>
-                        <div class="carte-verso">
-                            <h2>Une reproduction web du célèbre jeu "Gobblet Gobblers"</h2>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="projet" id="projet6">
-                <div class="carte">
-                    <div class="carte-recto">
-                        <h2>Prochainement</h2>
-                    </div>
-                    <div class="carte-verso">
-                        <h2>En cours de développement</h2>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
+    
 </body>
 </html>

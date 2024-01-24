@@ -18,8 +18,8 @@ body {
     align-items: center;
 }
 
-.contenue {
-    margin-top: 50px;
+.contenu {
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
 }
@@ -34,8 +34,8 @@ h1, h2, h3, h4, h5, h6, p, ul {
     margin-bottom: 10px;
 }
 
-h2 {
-    font-size: 20px;
+h1 {
+    text-align: center;
 }
 
 p {
