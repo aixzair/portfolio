@@ -11,83 +11,48 @@
 
     <script defer src="./../js/config.js"></script>
     <script defer src="./../js/header.js"></script>
+    <script defer src="./../js/projet.js"></script>
 </head>
 <body>
     <header data-actif="Projets"></header>
-
     <main>
         <section id="projets">
-            <div class="projet" id="projet1">
-                <a href="./projets/pomodoro.html">
-                    <div class="carte">
-                        <div class="carte-recto">
-                            <h2>Pomodoro</h2>
-                        </div>
-                        <div class="carte-verso">
-                            <h2>Un outils pour gérer votre temps de travail et de repos</h2>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="projet" id="projet2">
-                <a href="./projets/instantWeather.html">
-                    <div class="carte">
-                        <div class="carte-recto">
-                            <h2>Instant weather</h2>
-                        </div>
-                        <div class="carte-verso">
-                            <h2>Un outils pour voir la metéo pour les 7 prochains jours dans votre ville</h2>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="projet" id="projet3">
-                <div class="carte">
-                    <div class="carte-recto">
-                        <h2>P'tit cuisto</h2>
-                    </div>
-                    <div class="carte-verso">
-                        <h2>Description du projet</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="projet" id="projet4">
-                <div class="carte">
-                    <div class="carte-recto">
-                        <h2>Jeu de go</h2>
-                    </div>
-                    <div class="carte-verso">
-                        <h2>Description du projet</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="projet" id="projet5">
-                <a href="./projets/goblbetGobblers.html">
-                    <div class="carte">
-                        <div class="carte-recto">
-                            <h2>Gobblet gobblers</h2>
-                        </div>
-                        <div class="carte-verso">
-                            <h2>Une reproduction web du célèbre jeu "Gobblet Gobblers"</h2>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="projet" id="projet6">
-                <div class="carte">
-                    <div class="carte-recto">
-                        <h2>Prochainement</h2>
-                    </div>
-                    <div class="carte-verso">
-                        <h2>En cours de développement</h2>
-                    </div>
-                </div>
-            </div>
+            <div
+                class="js-projet"
+                data-href="./projets/goblbetGobblers.html"
+                data-recto="Gobblet gobblers"
+                data-verso='Une reproduction web du célèbre jeu "Gobblet Gobblers"'
+            ></div>
+            <div
+                class="js-projet"
+                data-href="./projets/instantWeather.html"
+                data-recto="Instant weather"
+                data-verso="Un outils pour voir la metéo chez vous"
+            ></div>
+            <div
+                class="js-projet"
+                data-href="./projets/pomodoro.html"
+                data-recto="Pomodoro"
+                data-verso="Un outils pour gérer votre temps de travail"
+            ></div>
+            <div
+                class="js-projet"
+                data-href="./projets/ptitCuisto.html"
+                data-recto="P'tit cuisto"
+                data-verso="Description du projet"
+            ></div>
+            <div
+                class="js-projet"
+                data-href="./projets/jeuGo.html"
+                data-recto="Jeu de go"
+                data-verso="Jeu de go en Java-FX"
+            ></div>
+            <div
+                class="js-projet"
+                data-href=""
+                data-recto="Prochainement"
+                data-verso='En cours de développement'
+            ></div>
         </section>
     </main>
 </body>
