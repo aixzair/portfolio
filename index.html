@@ -2,17 +2,35 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="/images/icon.png" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Index</title>
-    <link rel="icon" href="./images/icon.png" type="image/x-icon" />
+
+    <title>Porfil</title>
+
+    <link rel="stylesheet" href="./css/style.css"/>
+
+    <script defer src="./js/config.js"></script>
+    <script defer src="./js/header.js"></script>
 </head>
 <body>
-    <script>
-        let href = window.location.href;
-        href = href.replace("index.html", "");
-        href += "pages/profil.html";
-        window.location.href = href;
-    </script>
+    <header data-actif="Profil"></header>
+
+    <section class="contenue align-center">
+        <h1>Alexandre Lerosier</h1>
+
+        <div class="menuDeuxPartie">
+            <div class="menu-item">
+                <img src="./../images/profil_avatar.png" alt="avatar profil" id="profilAvatar">
+            </div>
+            <div class="menu-item">
+                <p>
+                    Né le 3 décembre 2004, je suis développeur en formation, actuellement en deuxième année de mon cursus en informatique à Caen.
+                    J'ai déjà réalisé de nombreux projets dans le domaine du web, des bases de données et des applications en Java et en langage C,
+                    que ce soit en autonomie ou en collaboration au sein d'une équipe.
+                </p>
+            </div>
+        </div>
+    </section>
+    
 </body>
 </html>
