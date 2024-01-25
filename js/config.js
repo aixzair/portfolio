@@ -110,7 +110,10 @@ function modifierEnfants(enfants) {
     for (const enfant of enfants) {
         if (enfant instanceof HTMLAnchorElement) {
             const a = enfant;
-            if (a.href.startsWith(window.location.origin)) {
+            if (
+                a.href.startsWith(window.location.origin)
+                && !a.href.startsWith(".")
+            ) {
                 a.href = getReelPath() + a.pathname + a.search + a.hash;
             }
         }
