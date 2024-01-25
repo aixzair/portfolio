@@ -28,7 +28,10 @@ if (getReelPath() !== '') {
 
 // ajuste les liens (link) -------------------------------------------------
 document.querySelectorAll('link').forEach(function(link) {
-    if (link.href.startsWith(window.location.origin)) {
+    if (
+        link.href.startsWith(window.location.origin)
+        && !link.href.startsWith(".")
+    ) {
         const path = link.href.substring(window.location.origin.length);
         const reelPath = getReelPath();
         link.href = path.startsWith(reelPath) ? path : reelPath + path;
