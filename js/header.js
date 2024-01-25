@@ -15,7 +15,7 @@ function fabriquerheader() {
 
     nom.textContent = "Alexandre Lerosier";
     profil.textContent = "Profil";
-    profil.setAttribute("href", "/index.html");
+    profil.setAttribute("href", "/pages/profil.html");
     projets.textContent = "Projets";
     projets.setAttribute("href", "/pages/projets.html")
     contact.textContent = "Contact";

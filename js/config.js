@@ -4,6 +4,13 @@
 
 /* ---------------------------- Actions ------------------------------ */
 
+if (window.location.href.endsWith("index.html")) {
+    let location = window.location.href;
+    location = location.replace("index.html", "");
+    location += "pages/projets.html";
+    window.location.href = location;
+}
+
 // ajuste les script ----------------------------------------------------
 document.querySelectorAll('script').forEach(function(script) {
     if (script.src.startsWith(window.location.origin)) {
