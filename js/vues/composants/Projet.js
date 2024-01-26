@@ -1,4 +1,23 @@
-class Projet {
+export class Projet {
+    // Classe -------------------------------------------------------
+    static fabriquerTout() {
+        const PROJETS_HTML = document.getElementById("projets");
+        const projets = document.getElementsByClassName("js-projet");
+
+        for (const i = 0; projets.length > 0;) {
+            const projetHTML = (new Projet(
+                projets[i].dataset.href,
+                projets[i].dataset.recto,
+                projets[i].dataset.verso
+            )).fabriquer();
+
+            PROJETS_HTML.removeChild(projets[i]);
+            PROJETS_HTML.appendChild(projetHTML);
+        }
+    }
+
+    // Instance -----------------------------------------------------
+
     #href;
     #recto;
     #verso;
@@ -9,7 +28,7 @@ class Projet {
         this.#verso = verso;
     }
 
-    creerProjetHTML() {
+    fabriquer() {
         const projet = document.createElement("div");
         const lien = document.createElement("a");
         const carte = document.createElement("div");
@@ -44,21 +63,7 @@ class Projet {
     }
 }
 
-const PROJETS_HTML = document.getElementById("projets");
-const projets = document.getElementsByClassName("js-projet");
-
-for (const i = 0; projets.length > 0;) {
-    const projetHTML = (new Projet(
-        projets[i].dataset.href,
-        projets[i].dataset.recto,
-        projets[i].dataset.verso
-    )).creerProjetHTML();
-
-    PROJETS_HTML.removeChild(projets[i]);
-    PROJETS_HTML.appendChild(projetHTML);
-}
-
-/*
+/* Exemple -----------------------------------
 <div
     class="js-projet"
     data-href="./projets/pomodoro.html"
