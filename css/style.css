@@ -183,14 +183,8 @@ nav a.actif {
         display: block;
     }
 
-    nav span,
-    nav a:not(:nth-child(2)) {
+    header span {
         display: none;
-    }
-
-    .projet {
-        width: 94%;
-        justify-content: center;
     }
 
     nav.responsive {
@@ -203,13 +197,45 @@ nav a.actif {
         text-align: center;
     }
 
-    .fa-brands {
-        font-size: 3em;
+    .projet {
+        width: 100%;
+        min-height: 100px;
     }
 
-    #arrow-up {
-        left: 85%;
-        bottom: 15px;
+    .carte-recto,
+    .carte-verso {
+        height: 100px;
+        padding: 0 0 0 0;
+    }
+
+    .carte-recto {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .projet:hover .carte {
+        transform: rotateX(0deg);
+    }
+
+    .menuDeuxPartie {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-item {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #profilAvatar {
+        height: 100px;
+        width: 100px;
     }
 }
 
