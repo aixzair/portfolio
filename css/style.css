@@ -179,10 +179,6 @@ nav a.actif {
 /* ___________________________ Media Queries ______________________________*/
 
 @media screen and (max-width: 768px) {
-    nav {
-        background-color: red;
-    }
-
     header span {
         display: none;
     }
