@@ -14,10 +14,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.align-center {
-    align-items: center;
-}
-
 .contenu {
     margin-top: 25px;
     display: flex;
@@ -38,12 +34,26 @@ h1 {
     text-align: center;
 }
 
+.titre-partie {
+    margin-top: 15px;
+}
+
 p {
     text-align: justify;
 }
 
 li {
     margin-bottom: 2px;
+}
+
+/* ___________________________ Basique ___________________________*/
+
+.souligné {
+    text-decoration: underline;
+}
+
+.align-center {
+    align-items: center;
 }
 
 /* ___________________________ Header ____________________________*/
