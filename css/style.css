@@ -121,7 +121,6 @@ nav a.actif {
 }
 
 .projet {
-    background-color: transparent;
     width: 30%;
     min-height: 300px;
     perspective: 1000px; /* Pour l'effet 3D */
@@ -130,7 +129,6 @@ nav a.actif {
 
 /* --------------- Cartes --------------- */
 .carte {
-    width: 100%;
     height: 100%;
     text-align: center;
     transition: transform 0.8s;
