@@ -17,14 +17,21 @@ export class Header {
         const projets = document.createElement("a");
         const profil = document.createElement("a");
         const contact = document.createElement("a");
+
+        nav.classList.add("header-nav");
     
         nom.textContent = "Alexandre Lerosier";
+        nom.classList.add("header-texte");
+        
         profil.textContent = "Profil";
         profil.setAttribute("href", LC.corriger("/pages/profil.html"));
+        profil.classList.add("header-lien");
         projets.textContent = "Projets";
-        projets.setAttribute("href", LC.corriger("/pages/projets.html"))
+        projets.setAttribute("href", LC.corriger("/pages/projets.html"));
+        projets.classList.add("header-lien");
         contact.textContent = "Contact";
         contact.setAttribute("href", LC.corriger("/pages/contact.html"));
+        contact.classList.add("header-lien");
     
         switch (this.HEADER.dataset.actif) {
         case "Projets":
@@ -46,3 +53,14 @@ export class Header {
         this.HEADER.appendChild(nav);
     }
 }
+
+/* 
+Exemples :
+
+<nav>
+    <span class="header-texte">Alexandre Lerosier</span>
+    <a href="/pages/profil.html" class="header-lien">Profil</a>
+    <a href="/pages/projets.html" class="header-lien actif">Accueil</a>
+    <a href="/pages/contact.html" class="header-lien">Contact</a>
+</nav>
+*/

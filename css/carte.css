@@ -1,0 +1,103 @@
+
+/*
+cartes
+    carte-exterieur
+        carte-interieur
+            carte-recto
+            carte-verso
+    carte-exterieur
+        ...
+*/
+
+.cartes {
+    --carte-color-recto: var(--color-primary);
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    max-width: 1620px;
+    margin: auto;
+    
+    color: var(--color-text);
+}
+
+
+.carte-exterieur {
+    width: 30%;
+    min-height: 300px;
+    perspective: 1000px; /* Pour l'effet 3D */
+    margin: 16px;
+}
+
+.carte-exterieur:hover .carte-interieur {
+    transform: rotateX(180deg);
+}
+
+
+.carte-interieur {
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+
+.carte-recto,
+.carte-verso {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    padding: 33% 0;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.carte-recto {
+    background-color: var(--carte-color-recto);
+}
+
+.carte-verso {
+    background-color: #185d36;
+    transform: rotateX(180deg);
+}
+
+
+/* ________________________ Responsive ________________________ */
+
+@media screen and (max-width: 768px) {
+    .carte-exterieur {
+        width: 100%;
+        min-height: 100px;
+    }
+
+    .carte-exterieur:hover .carte-interieur {
+        transform: initial;
+    }
+
+    .carte-recto,
+    .carte-verso {
+        height: 100px;
+        padding: initial;
+    }
+
+    .carte-recto {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 540px) and (max-width: 768px) {
+    .carte-exterieur {
+        width: 468px;
+        margin: 20px auto;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .carte-exterieur {
+        width: 45%;
+    }
+}

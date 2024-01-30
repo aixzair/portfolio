@@ -1,6 +1,5 @@
 /**
- * Cette classe permet de créer la carte d'un projet HTML à partir d'une balise div contenant
- * les bonnes infos
+ * Fabrique des cartes cliquable représentant des projets
  * @author Alexandre Lerosier
  */
 export class Projet {
@@ -11,18 +10,21 @@ export class Projet {
      * @returns {void}
      */
     static fabriquerTout() {
-        const PROJETS_HTML = document.getElementById("projets");
-        const projets = document.getElementsByClassName("js-projet");
+        const CARTES = document.getElementsByClassName("cartes");
 
-        for (const i = 0; projets.length > 0;) {
-            const projetHTML = (new Projet(
-                projets[i].dataset.href,
-                projets[i].dataset.recto,
-                projets[i].dataset.verso
-            )).fabriquer();
+        for (let cartes of CARTES) {
+            const projets = cartes.querySelectorAll(".js-projet");
 
-            PROJETS_HTML.removeChild(projets[i]);
-            PROJETS_HTML.appendChild(projetHTML);
+            projets.forEach(projet => {
+                const carte = (new Projet(
+                    projet.dataset.href,
+                    projet.dataset.recto,
+                    projet.dataset.verso
+                )).fabriquer();
+
+                cartes.removeChild(projet);
+                cartes.appendChild(carte);
+            });
         }
     }
 
@@ -45,12 +47,11 @@ export class Projet {
     }
 
     /**
-     * Créé le code HTML de la carte
+     * Créé une carte représentant un projet
      * @returns {HTML} la carte du projet créé
      */
     fabriquer() {
-        const projet = document.createElement("div");
-        const lien = document.createElement("a");
+        const projet = document.createElement("a");
         const carte = document.createElement("div");
         const recto = this.#creerFaceHTML(this.#recto);
         const verso = this.#creerFaceHTML(this.#verso);
@@ -61,13 +62,12 @@ export class Projet {
         verso.classList.add("carte-verso");
         carte.appendChild(verso);
 
-        carte.classList.add("carte");
-        lien.appendChild(carte);
+        carte.classList.add("carte-interieur");
+        projet.appendChild(carte);
 
-        lien.href = this.#href;
-        projet.appendChild(lien);
-
-        projet.classList.add("projet");
+        projet.classList.add("carte-exterieur");
+        projet.href = this.#href;
+        projet.classList.add("color-inherit");
 
         return projet;
     }
@@ -99,16 +99,14 @@ export class Projet {
 </div>
 
 // Après :
-<div class="projet">
-    <a href="./projets/pomodoro.html">
-        <div class="carte">
-            <div class="carte-recto">
-                <h2>Pomodoro</h2>
-            </div>
-            <div class="carte-verso">
-                <h2>Un outil pour gérer votre temps de travail et de repos</h2>
-            </div>
+<a href="./projets/pomodoro.html" class="projet color-inherit">
+    <div class="carte">
+        <div class="carte-recto">
+            <h2>Pomodoro</h2>
         </div>
-    </a>
-</div>
+        <div class="carte-verso">
+            <h2>Un outil pour gérer votre temps de travail et de repos</h2>
+        </div>
+    </div>
+</a>
 */
