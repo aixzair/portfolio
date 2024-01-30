@@ -38,7 +38,7 @@
 /* ________________________ Responsive ________________________ */
 
 @media screen and (max-width: 768px) {
-    .header-nav {
+    .header-texte {
         display: none;
     }
 }
