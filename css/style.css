@@ -64,15 +64,17 @@ li {
     margin-top: 20px;
 }
 
+.contenu-titre {
+    margin-top: 10px;
+
+    font-size: 20px;
+}
+
 .contenu-date {
     margin-top: 2px;
     padding-left: 5px;
 
     font-style: italic;
-}
-
-.contenu-titre {
-    margin-top: 10px;
 }
 
 .contenu-p {
