@@ -1,3 +1,6 @@
+@import "./header.css";
+@import "./carte.css";
+
 :root {
     --color-primary: #483d8b;
     --color-text: #fff;
@@ -48,7 +51,7 @@ li {
 
 /* ___________________________ Basique ___________________________*/
 
-.souligné {
+.text-decoration-underline {
     text-decoration: underline;
 }
 
@@ -56,48 +59,8 @@ li {
     align-items: center;
 }
 
-/* ___________________________ Header ____________________________*/
-
-header {
-    color: var(--color-text);
-}
-
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #333;
-    overflow: hidden;
-    align-items: center;
-}
-
-nav a,
-nav span {
-    padding: 14px 16px;
-    color: var(--color-text);
-}
-
-nav span {
-    margin-right: 70%;
-    font-family: 'Shadows Into Light Two', cursive;
-    font-size: 18px;
-}
-
-nav a {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-nav a:hover {
-    background-color: #ddd;
-    color: var(--color-primary);
-}
-
-nav a.actif {
-    background-color: var(--color-primary);
-    color: var(--color-text); 
+.color-inherit {
+    color: inherit;
 }
 
 /* ___________________________ Menu _______________________________*/
@@ -113,64 +76,6 @@ nav a.actif {
     width: 40%;
 }
 
-/* _____________________________ Projets ________________________________*/
-#projets {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 20px;
-    max-width: 1620px;
-    margin: auto;
-    
-    color: var(--color-text);
-}
-
-#projets a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.projet {
-    background-color: transparent;
-    width: 30%;
-    min-height: 300px;
-    perspective: 1000px; /* Pour l'effet 3D */
-    margin: 16px;
-}
-
-/* --------------- Cartes --------------- */
-.carte {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-/* Rotation verticale au hover */
-.projet:hover .carte {
-    transform: rotateX(180deg);
-}
-
-.carte-recto,
-.carte-verso {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    padding: 33% 0;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
-}
-
-.carte-recto {
-    background-color: var(--color-primary);
-}
-
-.carte-verso {
-    background-color: #185d36;
-    transform: rotateX(180deg);
-}
 
 /* _____________________________ Profil ________________________________*/
 
@@ -189,45 +94,6 @@ nav a.actif {
 /* ___________________________ Media Queries ______________________________*/
 
 @media screen and (max-width: 768px) {
-    .nav {
-        display: block;
-    }
-
-    header span {
-        display: none;
-    }
-
-    nav.responsive {
-        position: relative;
-    }
-
-    nav.responsive a {
-        float: none;
-        display: block;
-        text-align: center;
-    }
-
-    .projet {
-        width: 100%;
-        min-height: 100px;
-    }
-
-    .carte-recto,
-    .carte-verso {
-        height: 100px;
-        padding: 0 0 0 0;
-    }
-
-    .carte-recto {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .projet:hover .carte {
-        transform: rotateX(0deg);
-    }
-
     .menuDeuxPartie {
         display: flex;
         flex-direction: column;
@@ -246,27 +112,5 @@ nav a.actif {
     #profilAvatar {
         height: 100px;
         width: 100px;
-    }
-}
-
-@media screen and (min-width: 540px) and (max-width: 768px) {
-    .projet {
-        width: 468px;
-        margin: 20px auto;
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-    .projet {
-        width: 45%;
-    }
-    nav span {
-        margin-right: 30%;
-    }
-}
-
-@media screen and (min-width: 1024px) and (max-width: 1850px) {
-    nav span {
-        margin-right: 48%;
     }
 }
