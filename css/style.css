@@ -16,6 +16,8 @@
 body {
     overflow-y: scroll;
     font-family: 'Roboto', sans-serif;
+
+    min-width: 320px;
 }
 
 h1 {
@@ -49,7 +51,7 @@ li {
     margin-bottom: 10px;
 }
 
-/* ___________________________ Autres ____________________________*/
+/* ___________________________ Contenu ___________________________*/
 
 .contenu {
     margin-top: 10px;
@@ -81,6 +83,42 @@ li {
     margin-top: 5px;
 }
 
+@media screen and (max-width: 768px) {
+    .menu-item {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ___________________________ Images ____________________________*/
+
+.image-grille {
+    margin-top: 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-around;
+}
+
+.image {
+    height: auto;
+
+    max-width: 100%;
+    width: 30%;
+    min-width: 300px;
+
+    margin: 16px;
+    margin-top: 10px;
+}
+
+/* ___________________________ Autres ____________________________*/
+
 .encadre {
     background-color: lightgrey;
     border-radius: 10px;
@@ -103,8 +141,6 @@ li {
 .titre-partie {
     margin-top: 15px;
 }
-
-/* _____________________________ Autres classes ________________________*/
 
 /* _____________________________ Profil ________________________________*/
 
