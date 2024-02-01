@@ -29,20 +29,6 @@ li {
     margin-bottom: 1px;
 }
 
-/* ___________________________ Basique ___________________________*/
-
-.text-decoration-underline {
-    text-decoration: underline;
-}
-
-.align-center {
-    align-items: center;
-}
-
-.color-inherit {
-    color: inherit;
-}
-
 /* ___________________________ Contenu ___________________________*/
 
 .contenu {
@@ -151,6 +137,10 @@ li {
     padding: 10px;
 }
 
+.texte-normal > p {
+    margin-top: 20px;
+}
+
 /* _____________________________ Profil ________________________________*/
 
 #profilAvatar {
@@ -164,4 +154,28 @@ li {
         height: 100px;
         width: 100px;
     }
+}
+
+/* ___________________________ Basique ___________________________*/
+
+.align-center {
+    align-items: center;
+}
+
+.color-inherit {
+    color: inherit;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.margin-top-30px {
+    margin-top: 30px;
+}
+
+.text-decoration-underline {
+    text-decoration: underline;
 }
