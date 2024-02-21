@@ -10,7 +10,7 @@ header
 */
 
 .header-nav {
-    --header-color-primary: #555;
+    --header-color-primary: var(--color-secondary);
     --header-color-secondary: var(--color-primary);
     --header-color-text: var(--color-text);
 
