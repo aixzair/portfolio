@@ -17,6 +17,7 @@ export class Header {
         const projets = document.createElement("a");
         const profil = document.createElement("a");
         const contact = document.createElement("a");
+        const cv = document.createElement("a");
 
         nav.classList.add("header-nav");
     
@@ -32,6 +33,10 @@ export class Header {
         contact.textContent = "Contact";
         contact.setAttribute("href", LC.corriger("/pages/contact.html"));
         contact.classList.add("header-lien");
+        cv.textContent = "CV";
+        cv.setAttribute("href", LC.corriger("/docs/cv.pdf"));
+        cv.setAttribute("target", "_blank");
+        cv.classList.add("header-lien");
     
         switch (this.HEADER.dataset.actif) {
         case "Projets":
@@ -48,6 +53,7 @@ export class Header {
         nav.appendChild(nom);
         nav.appendChild(profil);
         nav.appendChild(projets);
+        nav.appendChild(cv);
         nav.appendChild(contact);
     
         this.HEADER.appendChild(nav);
@@ -61,6 +67,7 @@ Exemples :
     <span class="header-texte">Alexandre Lerosier</span>
     <a href="/pages/profil.html" class="header-lien">Profil</a>
     <a href="/pages/projets.html" class="header-lien actif">Accueil</a>
+    <a href="/docs/cv.pdf" class="header-lien" target="_blank">cv</a>
     <a href="/pages/contact.html" class="header-lien">Contact</a>
 </nav>
 */
