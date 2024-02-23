@@ -1,29 +1,59 @@
 import ACarte from "./ACarte.js";
 
-// HTMLElement
+/* Exemple de carte fabriqué :
+
+<div class="carte-interieur">
+    <div class="carte-exterieur">
+        <div class="carte-face carte-face-recto">
+            <span>contenu du recto</span>
+        </div>
+        <div class="carte-face carte-face-verso">
+            <span>contenu du verso</span>
+        </div>
+    </div>
+</div>
+
+*/
 
 /**
- * Fabrique une carte HTML
+ * Fabrique une carte HTML basique
  * @author Alexandre Lerosier
  */
 export default class Carte extends ACarte {
     #recto;
     #verso;
 
+    /**
+     * Constuit une carte js
+     * @param {String} recto - contenu du recto de la carte
+     * @param {String} verso - contenu du verso de la carte
+     */
     constructor(recto, verso) {
         super();
         this.#recto = recto;
         this.#verso = verso;
     }
 
+    /**
+     * Renvoie le contenu du recto de la carte
+     * @returns {String}
+     */
     get recto() {
         return this.#recto;
     }
 
+    /**
+     * Renvoie le contenu du verso de la carte
+     * @returns {String}
+     */
     get verso() {
         return this.#verso;
     }
 
+    /**
+     * Fabrique la carte en HTML
+     * @returns {HTMLElement}
+     */
     fabriquer() {
         const carte = this._fabriquerExterieur();
         const interieur = this._fabriquerInterieur()
@@ -35,6 +65,10 @@ export default class Carte extends ACarte {
         return carte;
     }
 
+    /**
+     * Fabrique la partie extérieur de la carte
+     * @returns {HTMLElement}
+     */
     _fabriquerExterieur() {
         const exterieur = document.createElement("div");
         exterieur.classList.add("carte-exterieur");
@@ -42,6 +76,10 @@ export default class Carte extends ACarte {
         return exterieur;
     }
 
+    /**
+     * Fabrique l'enveloppe intérieur de la carte
+     * @returns {HTMLElement}
+     */
     _fabriquerInterieur() {
         const interieur = document.createElement("div");
         interieur.classList.add("carte-interieur");
@@ -49,6 +87,10 @@ export default class Carte extends ACarte {
         return interieur;
     }
 
+    /**
+     * Fabrique le recto de la carte
+     * @returns {HTMLElement}
+     */
     _fabriquerRecto() {
         const recto = document.createElement("div");
         const contenu = document.createElement("span");
@@ -62,6 +104,10 @@ export default class Carte extends ACarte {
         return recto;
     }
 
+    /**
+     * Fabrique le verso de la carte
+     * @returns {HTMLElement}
+     */
     _fabriquerVerso() {
         const verso = document.createElement("div");
         const contenu = document.createElement("span");
@@ -75,16 +121,3 @@ export default class Carte extends ACarte {
         return verso;
     }
 }
-
-/* Exemple -----------------------------------
-<div class="carte-interieur">
-    <div class="carte-exterieur">
-        <div class="carte-recto">
-            <h2>sldfj</h2>
-        </div>
-        <div class="carte-verso">
-            <h2>sdlkjf</h2>
-        </div>
-    </div>
-</div>
-*/

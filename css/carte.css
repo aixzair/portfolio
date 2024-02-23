@@ -62,20 +62,24 @@ cartes
     
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .carte-face-recto {
-    justify-content: center;
     background-color: var(--carte-color-recto);
 }
 
 .carte-face-verso {
-    justify-content: center;
     background-color: var(--carte-color-verso);
     transform: rotateX(180deg);
 }
 
-.carte-image-contenu {
+.carte-face-image {
+    justify-content: initial;
+    background-size: contain;
+}
+
+.carte-face-image-contenu {
     padding: 5px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -118,5 +122,9 @@ cartes
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .carte-face-image {
+        background-image: initial;
     }
 }

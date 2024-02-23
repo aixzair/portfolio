@@ -3,11 +3,14 @@ import CarteCliquable from "./composants/cartes/CarteCliquable.js";
 import CarteImageRecto from "./composants/cartes/CarteImageRecto.js";
 
 /**
- * Fabrique des cartes cliquable représentant des projets
+ * Fabrique les projet
  * @author Alexandre Lerosier
  */
 export default class Projet {
 
+    /**
+     * Fabrique tous les projets
+     */
     static fabriquerProjets() {
         const CARTES = document.getElementsByClassName("cartes");
 
@@ -23,6 +26,11 @@ export default class Projet {
         }
     }
 
+    /**
+     * Fabirque une carte à partir d'un projet
+     * @param {HTMLElement} projet 
+     * @returns 
+     */
     static fabriquerCarte(projet) {
         const recto = projet.dataset.recto;
         const verso = projet.dataset.verso;
@@ -42,18 +50,3 @@ export default class Projet {
         return carte.fabriquer();
     }
 }
-
-/**
-     * Créer un background à un élément
-     * @param {HTMLElement} face - Elément HTML
-     * @param {String} lien - Lien vers le background
-     */
-    /*#creerBackground(face, lien) {
-        
-        //face.style.opacity = "0.5";
-        //face.style.filter = "blur(1px)";
-
-        //face.style.filter = "grayscale(80%)"; // filter: blur(5px);
-        // face.style.padding = "30%";
-        face.style.color = "var(--color-primary)";
-    }*/

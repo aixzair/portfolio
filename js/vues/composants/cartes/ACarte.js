@@ -1,3 +1,7 @@
+/**
+ * Classe "abstraite" permetant de fabriquer une carte HTML
+ * @author Alexandre Lerosier
+ */
 export default class ACarte {
 
     constructor() {
