@@ -1,6 +1,6 @@
 // Programme principal
 
-import { Projets } from "./controleurs/pages/Projets.js";
+import Projets from "./controleurs/pages/Projets.js";
 
 import { Header } from "./vues/composants/Header.js";
 

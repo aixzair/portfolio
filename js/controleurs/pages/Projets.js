@@ -1,16 +1,16 @@
-import {Projet} from "./../../vues/composants/Projet.js";
+import Projet from "./../../vues/Projet.js";
 
 /**
  * Les actions spécifiques à la pages projets.html
  * @author Alexandre Lerosier
  */
-export class Projets {
+export default class Projets {
 
     /**
      * Exécute les actions
      * @returns {void}
      */
     static executer() {
-        Projet.fabriquerTout();
+        Projet.fabriquerProjets();
     }
 }
