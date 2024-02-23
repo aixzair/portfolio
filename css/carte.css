@@ -112,19 +112,27 @@ cartes
         transform: initial;
     }
 
-    .carte-recto,
-    .carte-verso {
+    .carte-face {
         height: 100px;
         padding: initial;
     }
 
-    .carte-recto {
+    .carte-face-recto {
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .carte-face-image {
-        background-image: initial;
+        background-image: none !important;
+        background-color: var(--carte-color-recto);
+    }
+
+    .carte-face-image-contenu {
+        padding: initial;
+        border-top-right-radius: initial;
+        border-bottom-right-radius: initial;
+        background-color: initial;
+        box-shadow: initial;
     }
 }
