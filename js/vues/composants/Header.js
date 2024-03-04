@@ -53,8 +53,8 @@ export class Header {
         nav.appendChild(nom);
         nav.appendChild(profil);
         nav.appendChild(projets);
-        nav.appendChild(cv);
         nav.appendChild(contact);
+        nav.appendChild(cv);
     
         this.HEADER.appendChild(nav);
     }
