@@ -67,7 +67,7 @@ Exemples :
     <span class="header-texte">Alexandre Lerosier</span>
     <a href="/pages/profil.html" class="header-lien">Profil</a>
     <a href="/pages/projets.html" class="header-lien actif">Accueil</a>
-    <a href="/docs/cv.pdf" class="header-lien" target="_blank">cv</a>
     <a href="/pages/contact.html" class="header-lien">Contact</a>
+    <a href="/docs/cv.pdf" class="header-lien" target="_blank">cv</a>
 </nav>
 */
