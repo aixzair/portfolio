@@ -4,7 +4,7 @@ import { LiensCorrectif as LC } from "./../../controleurs/LiensCorrectif.js";
  * Gènère le header de la page html.
  * @author Alexandre Lerosier
  */
-export class Header {
+export default class Header {
     static HEADER = document.querySelector('header');
 
     /**

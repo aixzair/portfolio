@@ -2,9 +2,9 @@
 @import "./carte.css";
 
 :root {
-    --color-primary: #584d9b;
-    --color-secondary:#555;
-    --color-text: #fff;
+    --color-primary: #5e4ec4; /*#584d9b;*/
+    --color-secondary:#666;
+    --color-text: white;
 
     background-color: white;
 }
@@ -21,6 +21,10 @@ body {
     font-family: 'Roboto', sans-serif;
 
     min-width: 320px;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -30,6 +34,22 @@ h1 {
 li {
     margin-top: 1px;
     margin-bottom: 1px;
+}
+
+main {
+    flex: 1; 
+}
+
+/* ___________________________ Footer ____________________________*/
+
+footer {
+    padding: 14px 16px;
+    margin-top: 15px;
+    min-width: 100%;
+    background-color: var(--color-secondary);
+
+    text-align: center;
+    color: var(--color-text);
 }
 
 /* ___________________________ Contenu ___________________________*/
