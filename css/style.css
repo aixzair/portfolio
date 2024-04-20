@@ -1,3 +1,5 @@
+@import "./bootstrap.css";
+
 @import "./header.css";
 @import "./carte.css";
 
@@ -61,10 +63,6 @@ footer {
     
     display: flex;
     flex-direction: column;
-}
-
-.contenu-titre-principal {
-    margin-top: 20px;
 }
 
 .contenu-titre {
