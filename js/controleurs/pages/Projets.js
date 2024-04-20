@@ -13,4 +13,12 @@ export default class Projets {
     static executer() {
         Projet.fabriquerProjets();
     }
+
+    static afficherProjets() {
+        
+    }
+
+    static afficherProjet(url) {
+
+    }
 }
