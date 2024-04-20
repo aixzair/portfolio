@@ -42,6 +42,11 @@ main {
     flex: 1; 
 }
 
+/* ___________________________ Header ____________________________*/
+
+.header-font {
+    font-family: 'Shadows Into Light Two', cursive;
+}
 /* ___________________________ Footer ____________________________*/
 
 footer {
@@ -116,38 +121,6 @@ footer {
     margin-top: 10px;
 }
 
-/* ___________________________ Grille ____________________________*/
-
-.grille {
-    margin-top: 10px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.grille-element {
-    width: 40%;
-}
-
-@media screen and (max-width: 768px) {
-    .grille {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .grille-element {
-        width: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
 /* ___________________________ Autres ____________________________*/
 
 .encadre {
@@ -156,10 +129,6 @@ footer {
 
     margin-top: 20px;
     padding: 10px;
-}
-
-.texte-normal > p {
-    margin-top: 20px;
 }
 
 /* _____________________________ Profil ________________________________*/
