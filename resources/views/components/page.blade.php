@@ -15,19 +15,18 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand header-font" href="#">Alexandre Lerosier</a>
+                <a class="navbar-brand header-font" href="{{ route('home') }}">Alexandre Lerosier</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#liens"
                         aria-controls="liens" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="liens">
                     <div class="navbar-nav">
                         <a class="nav-link active" aria-current="page"
-                           href="/pages/profil.html">Profil</a>
-                        <a class="nav-link" href="/pages/projets.html">Projets</a>
-                        <a class="nav-link" href="/pages/contact.html">Contact</a>
-                        <a class="nav-link" href="/docs/cv.pdf" target="_blank">CV</a>
+                           href="{{ route('home') }}">Profil</a>
+                        <a class="nav-link" href="{{ route('projet.index') }}">Projets</a>
+                        <a class="nav-link" href="{{ route('contacts') }}">Contact</a>
+                        <a class="nav-link" href="{{ asset('docs/cv.pdf') }}" target="_blank">CV</a>
                     </div>
                 </div>
             </div>
