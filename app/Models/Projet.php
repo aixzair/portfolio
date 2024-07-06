@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Projet
 	extends Model {
 
+	protected $primaryKey = "pro_id";
+
 	protected $fillable = [
 		"pro_titre",
 		"pro_date_debut",

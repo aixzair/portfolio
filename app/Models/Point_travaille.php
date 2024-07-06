@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Point_travaille
 	extends Model {
-	public $fillable = [
-		"poi_id",
+
+	protected $primaryKey = 'poi_id';
+	
+	protected $fillable = [
 		"poi_nom",
 		"poi_definition",
 		"pro_id"

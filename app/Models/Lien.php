@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Lien
 	extends Model {
 
+	public $primaryKey = "lien_id";
 	public $fillable = [
-		"lien_id",
-		"lien_contenu",
+		"lien_nom",
+		"lien_destination",
 		"pro_id"
 	];
 }
