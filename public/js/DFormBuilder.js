@@ -1,3 +1,5 @@
+import HtmlBuilder from "./HtmlBuilder.js";
+
 export default class DFormBuilder {
     static #evtAnnuler = function (evt) {
         const bouton = evt.target;
@@ -20,7 +22,6 @@ export default class DFormBuilder {
         parent.querySelectorAll('input').forEach(element => {
             if (element.name === name) {
                 input = element;
-                return;
             }
         });
 
@@ -28,7 +29,7 @@ export default class DFormBuilder {
             console.error(`dform-suppr | data-form-suppr (${name}) introuvable.`);
             return;
         }
-        input.value = 'false';
+        input.value = '0';
     }
 
     static #evtSupprimer = function (evt) {
@@ -52,7 +53,6 @@ export default class DFormBuilder {
         parent.querySelectorAll('input').forEach(element => {
             if (element.name === name) {
                 input = element;
-                return;
             }
         });
         if (!input) {
@@ -60,7 +60,7 @@ export default class DFormBuilder {
             return;
         }
         input.disabled = false;
-        input.value = 'true';
+        input.value = '1';
     }
 
     /**
@@ -97,13 +97,11 @@ export default class DFormBuilder {
     }
 
     static #activerInputs(element, actif) {
-        const inputs = element
-            .querySelectorAll('input, select, textarea')
-            .forEach(input => {
-                if (input.type !== 'hidden') {
-                    input.readOnly = actif;
-                }
-            });
+        element.querySelectorAll('input, select, textarea').forEach(input => {
+            if (input.type !== 'hidden') {
+                input.readOnly = actif;
+            }
+        });
     }
 
     static #creerBouton() {
@@ -147,47 +145,25 @@ export default class DFormBuilder {
         const index = racine.children.length + 1;
 
         const point = document.createElement('div');
-
         const p = document.createElement('p');
         p.textContent = 'Point ' + index;
 
-        const groupes = [];
-        for (let i = 0; i < 2; i++) {
-            groupes[i] = document.createElement('div');
-            groupes[i].classList.add('input-group');
-            groupes[i].classList.add('my-2');
-        }
+        const groupeNom = HtmlBuilder.creerInputGroup(
+            'text', `points[${index}][nom]`, 'Nom'
+        );
+        groupeNom.classList.add('my-2');
 
-        const termeLabel = document.createElement('label');
-        termeLabel.textContent = 'Nom';
-        termeLabel.classList.add('input-group-text');
-        termeLabel.setAttribute('for', `points[${index}][nom]`);
-
-        const termeInput = document.createElement('input');
-        termeInput.classList.add('form-control');
-        termeInput.setAttribute('type', 'text');
-        termeInput.setAttribute('name', `points[${index}][nom]`);
-
-        const descriptionLabel = document.createElement('label');
-        descriptionLabel.textContent = 'Description';
-        descriptionLabel.classList.add('input-group-text');
-        descriptionLabel.setAttribute('for', `points[${index}][description]`);
-
-        const descriptionInput = document.createElement('textarea');
-        descriptionInput.classList.add('form-control');
-        descriptionInput.setAttribute('name', `points[${index}][description]`);
+        const groupeDescription = HtmlBuilder.creerInputGroup(
+            'textarea', `points[${index}][description]`, 'Description'
+        );
+        groupeDescription.classList.add('my-2');
 
         const bouton = DFormBuilder.#creerBouton();
         DFormBuilder.#setBouton(bouton, 'annulerAjout');
 
-        groupes[0].appendChild(termeLabel);
-        groupes[0].appendChild(termeInput);
-        groupes[1].appendChild(descriptionLabel);
-        groupes[1].appendChild(descriptionInput);
-
         point.appendChild(p);
-        point.appendChild(groupes[0]);
-        point.appendChild(groupes[1]);
+        point.appendChild(groupeNom);
+        point.appendChild(groupeDescription);
         point.appendChild(bouton);
 
         racine.appendChild(point);
@@ -199,43 +175,29 @@ export default class DFormBuilder {
      */
     static #projetLien(racine) {
         const index = racine.children.length / 3 + 1;
+
+        const lien = document.createElement('div');
         const p = document.createElement('p');
         p.textContent = 'Lien ' + index;
 
-        const groupes = [];
-        for (let i = 0; i < 2; i++) {
-            groupes[i] = document.createElement('div');
-            groupes[i].classList.add('input-group');
-            groupes[i].classList.add('my-2');
-        }
+        const groupeNom = HtmlBuilder.creerInputGroup(
+            'text', `liens[${index}][nom]`, 'Nom'
+        );
+        groupeNom.classList.add('my-2');
 
-        const termeLabel = document.createElement('label');
-        termeLabel.textContent = 'Nom';
-        termeLabel.classList.add('input-group-text');
-        termeLabel.setAttribute('for', 'definitions[]');
+        const groupeDestination = HtmlBuilder.creerInputGroup(
+            'text', `liens[${index}][destination]`, 'Lien'
+        );
+        groupeDestination.classList.add('my-2');
 
-        const termeInput = document.createElement('input');
-        termeInput.classList.add('form-control');
-        termeInput.setAttribute('type', 'text');
-        termeInput.setAttribute('name', 'definitions[]');
+        const bouton = DFormBuilder.#creerBouton();
+        DFormBuilder.#setBouton(bouton, 'annulerAjout');
 
-        const descriptionLabel = document.createElement('label');
-        descriptionLabel.textContent = 'Lien';
-        descriptionLabel.classList.add('input-group-text');
-        descriptionLabel.setAttribute('for', 'definitions[]');
+        lien.appendChild(p);
+        lien.appendChild(groupeNom);
+        lien.appendChild(groupeDestination);
+        lien.appendChild(bouton);
 
-        const descriptionInput = document.createElement('input');
-        descriptionInput.classList.add('form-control');
-        descriptionInput.setAttribute('type', 'text');
-        descriptionInput.setAttribute('name', 'definitions[]');
-
-        groupes[0].appendChild(termeLabel);
-        groupes[0].appendChild(termeInput);
-        groupes[1].appendChild(descriptionLabel);
-        groupes[1].appendChild(descriptionInput);
-
-        racine.appendChild(p);
-        racine.appendChild(groupes[0]);
-        racine.appendChild(groupes[1]);
+        racine.appendChild(lien);
     }
 }

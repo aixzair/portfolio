@@ -13,12 +13,14 @@ return new class
 	public function up(): void {
 		Schema::create('projets', function(Blueprint $table) {
 			$table->id("pro_id");
-			$table->string("pro_titre", 50)->nullable(false)->unique();
-			$table->date("pro_date_debut")->nullable(false);
-			$table->date("pro_date_fin")->nullable();
+			$table->string("pro_nom", 50)->nullable(false)->unique();
+			$table->date("pro_date")->nullable(false);
 			$table->string("pro_presentation", 200)->nullable(false);
-			$table->string("pro_image")->nullable();
-			$table->unsignedBigInteger("ens_id")->nullable();
+			$table->boolean("pro_image")->nullable(false);
+			$table->tinyInteger('pro_nbImage')->nullable(false)->default(0);
+			$table->unsignedBigInteger("ens_id")->nullable(false)->default(false);
+
+			// Dates
 			$table->timestamp('created_at')
 				->default(DB::raw('CURRENT_TIMESTAMP'));
 			$table->timestamp('updated_at')

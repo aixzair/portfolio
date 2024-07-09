@@ -4,11 +4,15 @@
             <a class="col-md-4 link-underline link-underline-opacity-0"
                href="{{ route("projet.show", ["id" => $projet->pro_id]) }}">
                 <div class="card">
-                    <img src="{{ asset("images/projets/$projet->pro_id/carte.png") }}"
-                         class="card-img-top"
-                         alt="{{ $projet->pro_titre }}">
+                    @if($projet->pro_image)
+                        <img src="{{ asset("images/projets/$projet->pro_id/carte.png") }}"
+                             class="card-img-top"
+                             alt="{{ $projet->pro_nom }}">
+                    @else
+                        <!-- TODO -->
+                    @endif
                     <div class="card-body">
-                        <p class="card-text text-center">{{ $projet->pro_titre }}</p>
+                        <p class="card-text text-center">{{ $projet->pro_nom }}</p>
                     </div>
                 </div>
             </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lien;
 use App\Models\Point_travaille;
 use App\Models\Projet;
 use App\Models\ProjetComplet;
@@ -49,50 +50,81 @@ class ProjetController
 	public function update(Request $request, string $id) {
 		$projet = ProjetComplet::findOrFail($id);
 		$request->validate([
+			'nom' => 'required|string|max:50',
 			'date' => 'required|date',
+			'imageCarte' => 'required|in:0,1',
 			'presentation' => 'required|string|max:200',
-			'titre' => 'required|string|max:50',
+			'liens.*.nom' => 'nullable|string|max:100',
+			'liens.*.destination' => 'nullable|string|max:100',
 			'points.*.nom' => 'nullable|string|max:50',
 			'points.*.description' => 'nullable|string|max:200'
 		]);
 
 		try {
+			// Met à jour le projet
 			$projet->details->update([
-				'pro_date' => $request->input('date'),
+				'pro_nom' => $request->input('nom'),
 				'pro_presentation' => $request->input('presentation'),
-				'pro_titre' => $request->input('titre')
+				'pro_date' => $request->input('date'),
+				'pro_image' => $request->input('imageCarte') == '1',
 			]);
 
-			// Gère les points
-			$points = $request->input('points', []);
-			foreach ($points as $point) {
-				$nom = $point['nom'] ?? null;
-				if ($nom == null) {
-					continue;
-				}
-				$description = $point['description'] ?? null;
+			// Gère les liens
+			foreach ($request->input('liens') ?? [] as $lien) {
+				$lienId = $lien['id'] ?? false;
+				$lienSuppression = ($lien['suppression'] ?? '0') === '1';
+				$lienNom = $lien['nom'] ?? null;
+				$lienDestination = $lien['destination'] ?? null;
 
-				$id = $point['data_id'] ?? false;
-				if ($id) {
-					$pointTravaille = Point_travaille::find($id);
-					if ($pointTravaille) {
-						if (($point['suppr'] ?? 'false') === 'true') {
-							// Suppréssion
-							Point_travaille::destroy($id);
+				if ($lienNom == null || $lienDestination == null) {
+					continue;
+				} elseif ($lienId) {
+					$lienBdd = Lien::find($lienId);
+					if ($lienBdd) {
+						if ($lienSuppression) {
+							Lien::destroy($lienId);
 						} else {
-							// Mis à jour
-							$pointTravaille->update([
-								'poi_nom' => $nom,
-								'poi_definition' => $point['suppr'] ?? '?',
+							$lienBdd->update([
+								'lien_nom' => $lienNom,
+								'lien_destination' => $lienDestination
 							]);
 						}
 					}
 				} else {
-					// Création
+					Lien::create([
+						'lien_nom' => $lienNom,
+						'lien_destination' => $lienDestination,
+						'pro_id' => $id
+					]);
+				}
+			}
+
+			// Gère les points
+			foreach ($request->input('points', []) ?? [] as $point) {
+				$pointId = $point['id'] ?? false;
+				$pointSuppression = ($point['suppression'] ?? '0') === '1';
+				$pointNom = $point['nom'] ?? null;
+				$pointDescription = $point['description'] ?? null;
+
+				if ($pointNom == null) {
+					continue;
+				} elseif ($pointId) {
+					$pointTravaille = Point_travaille::find($pointId);
+					if ($pointTravaille) {
+						if ($pointSuppression) {
+							Point_travaille::destroy($pointId);
+						} else {
+							$pointTravaille->update([
+								'poi_nom' => $pointNom,
+								'poi_definition' => $pointDescription,
+							]);
+						}
+					}
+				} else {
 					Point_travaille::create([
-						'poi_nom' => $nom,
-						'poi_definition' => $description,
-						'pro_id' => $projet->details->pro_id
+						'poi_nom' => $pointNom,
+						'poi_definition' => $pointDescription,
+						'pro_id' => $id
 					]);
 				}
 			}
