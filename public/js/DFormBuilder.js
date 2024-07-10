@@ -174,7 +174,7 @@ export default class DFormBuilder {
      * @param racine {HTMLElement} endroit où ajouter l'input
      */
     static #projetLien(racine) {
-        const index = racine.children.length / 3 + 1;
+        const index = racine.children.length + 1;
 
         const lien = document.createElement('div');
         const p = document.createElement('p');
