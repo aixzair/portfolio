@@ -141,7 +141,7 @@ class ProjetController
 
 		return redirect()
 			->route('projet.show', $projet->details->pro_id)
-			->with('success', 'Projet mis à jour avec succès');
+			->with('success', 'Projet mis à jour avec succès.');
 	}
 
 	/**
