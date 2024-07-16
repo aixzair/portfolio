@@ -20,7 +20,9 @@ class LienFactory
 	 */
 	public function definition(): array {
 		return [
-			// TODO
+			'lien_nom' => $this->faker->text(100),
+			'lien_destination' => $this->faker->text(100),
+			'pro_id' => -1
 		];
 	}
 }

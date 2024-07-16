@@ -12,7 +12,7 @@ class ProjetFactory
 	extends Factory {
 
 	protected $model = Projet::class;
-	
+
 	/**
 	 * Define the model's default state.
 	 *
@@ -20,7 +20,10 @@ class ProjetFactory
 	 */
 	public function definition(): array {
 		return [
-			// TODO
+			'pro_nom' => $this->faker->name(),
+			'pro_date' => $this->faker->date(),
+			'pro_presentation' => $this->faker->text(),
+			'pro_image' => false
 		];
 	}
 }

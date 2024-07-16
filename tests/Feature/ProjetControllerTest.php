@@ -5,8 +5,8 @@ namespace Tests\Feature;
 use App\Models\Lien;
 use App\Models\Point_travaille;
 use App\Models\Projet;
+use App\Models\ProjetComplet;
 use Illuminate\Support\Facades\DB;
-use Mockery\Exception;
 use Tests\TestCase;
 
 class ProjetControllerTest
@@ -23,12 +23,64 @@ class ProjetControllerTest
 
 	public function test_edit(): void { } // TODO
 
-	public function test_update(): void {
-		// TODO add
-		// TODO edit
-		// TODO delete
+	/**
+	 * Test l'ajout d'un lien et d'un point
+	 *
+	 * @return void
+	 */
+	public function test_update_add(): void {
+		DB::beginTransaction();
+		try {
+			// Création des données
+			$projet = Projet::factory()->create();
+
+			// Ajout d'un lien et d'un point travaillé
+			$reponse = $this->put(route('projet.update', $projet->pro_id), [
+				'nom' => $projet->pro_nom,
+				'date' => '2024-01-01',
+				'imageCarte' => '0',
+				'presentation' => $projet->pro_presentation,
+				'liens' => [
+					[
+						'nom' => 'testLien',
+						'destination' => 'lienDestination'
+					]
+				],
+				'points' => [
+					[
+						'nom' => 'testPoint',
+						'description' => 'pointDescription'
+					]
+				],
+			]);
+
+			// Test de la redirection
+			$reponse->assertRedirect(route('projet.show', $projet->pro_id));
+			$reponse->assertSessionHas('success', 'Projet mis à jour avec succès.');
+
+			$projetComplet = ProjetComplet::findOrFail($projet->pro_id);
+
+			// Test add lien
+			$this->assertCount(1, $projetComplet->liens);
+			$lien = $projetComplet->liens->first();
+			$this->assertEquals('testLien', $lien->lien_nom);
+			$this->assertEquals('lienDestination', $lien->lien_destination);
+
+			// Test add point
+			$this->assertCount(1, $projetComplet->points);
+			$point = $projetComplet->points->first();
+			$this->assertEquals('testPoint', $point->poi_nom);
+			$this->assertEquals('pointDescription', $point->poi_definition);
+		} finally {
+			DB::rollBack();
+		}
 	}
 
+	/**
+	 * Test la mise à jour d'un projet
+	 *
+	 * @return void
+	 */
 	public function test_update_edit(): void {
 		DB::beginTransaction();
 		try {
@@ -93,10 +145,68 @@ class ProjetControllerTest
 			$point->refresh();
 			$this->assertEquals('pointNom', $point->poi_nom);
 			$this->assertEquals('pointDescription', $point->poi_definition);
-		} catch (Exception $exception) {
-			throw $exception;
 		} finally {
 			DB::rollBack();
 		}
+	}
+
+	/**
+	 * Test de suppression d'un lien et d'un point
+	 *
+	 * @return void
+	 */
+	public function test_update_delete(): void {
+		DB::beginTransaction();
+		try {
+			// Création des données
+			$projet = Projet::factory()->create();
+			$lien = Lien::factory()->create([
+				'pro_id' => $projet->pro_id
+			]);
+			$point = Point_travaille::factory()->create([
+				'pro_id' => $projet->pro_id
+			]);
+
+			// Ajout d'un lien et d'un point travaillé
+			$reponse = $this->put(route('projet.update', $projet->pro_id), [
+				'nom' => $projet->pro_nom,
+				'date' => '2024-01-01',
+				'imageCarte' => '0',
+				'presentation' => $projet->pro_presentation,
+				'liens' => [
+					[
+						'id' => $lien->lien_id,
+						'nom' => $lien->lien_nom,
+						'destination' => $lien->lien_destination,
+						'suppression' => '1'
+					]
+				],
+				'points' => [
+					[
+						'id' => $point->poi_id,
+						'nom' => $point->poi_nom,
+						'description' => $point->poi_definition,
+						'suppression' => '1'
+					]
+				],
+			]);
+
+			// Test de la redirection
+			$reponse->assertRedirect(route('projet.show', $projet->pro_id));
+			$reponse->assertSessionHas('success', 'Projet mis à jour avec succès.');
+
+			$projetComplet = ProjetComplet::findOrFail($projet->pro_id);
+
+			// Test des suppressions
+			$this->assertCount(0, $projetComplet->liens);
+			$this->assertCount(0, $projetComplet->points);
+		} finally {
+			DB::rollBack();
+		}
+
+		// TODO Créer projet
+		// TODO Créer point et lien
+		// TODO update juste projet
+		// TODO vérification pas de point et lien
 	}
 }

@@ -20,7 +20,9 @@ class Point_travailleFactory
 	 */
 	public function definition(): array {
 		return [
-			// TODO
+			'poi_nom' => $this->faker->text(50),
+			'poi_definition' => $this->faker->text(200),
+			'pro_id' => -1
 		];
 	}
 }

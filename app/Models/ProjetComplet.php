@@ -4,10 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 
-class ProjetComplet {
+readonly class ProjetComplet {
 	public Projet $details;
-	public Collection $liens;
-	public Collection $points;
+
+	/**
+	 * @var Collection|Lien[]
+	 */
+	public Collection|array $liens;
+
+	/**
+	 * @var Collection|Point_travaille[]
+	 */
+	public Collection|array $points;
 
 	public static function findOrFail(string $id): ProjetComplet {
 		$projet = new ProjetComplet();

@@ -12,10 +12,10 @@ return new class
 	 */
 	public function up(): void {
 		Schema::create('projets', function(Blueprint $table) {
-			$table->id("pro_id");
-			$table->string("pro_nom", 50)->nullable(false)->unique();
-			$table->date("pro_date")->nullable(false);
-			$table->string("pro_presentation", 200)->nullable(false);
+			$table->id('pro_id');
+			$table->string('pro_nom', 50)->nullable(false)->unique();
+			$table->date('pro_date')->nullable(false);
+			$table->string('pro_presentation', 200)->nullable(false);
 			$table->boolean("pro_image")->nullable(false);
 			$table->tinyInteger('pro_nbImage')->nullable(false)->default(0);
 			$table->unsignedBigInteger("ens_id")->nullable(false)->default(false);
