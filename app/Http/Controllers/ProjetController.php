@@ -151,17 +151,3 @@ class ProjetController
 		//
 	}*/
 }
-
-/*
-<!--
-    'definitions.*.name' => 'nullable|string|max:255',
-    'definitions.*.value' => 'nullable|string|max:255',
-]);
-
-    // Mettre à jour les définitions
-    $projet->definitions = $request->input('definitions', []);
-    $projet->save();
--->
-
-
-*/

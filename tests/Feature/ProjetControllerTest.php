@@ -7,21 +7,28 @@ use App\Models\Point_travaille;
 use App\Models\Projet;
 use App\Models\ProjetComplet;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\DomCrawler\Crawler;
 use Tests\TestCase;
 
 class ProjetControllerTest
 	extends TestCase {
 
+	/**
+	 * Test de l'affichage des projets
+	 *
+	 * @return void
+	 */
 	public function test_index(): void {
-		// TODO
-		$response = $this->get('/');
+		Projet::factory()->create();
+		$nbProjets = Projet::count();
 
-		$response->assertStatus(200);
+		$reponse = $this->get(route('projet.index'));
+		$crawler = new Crawler($reponse->getContent());
+
+		// Test
+		$reponse->assertStatus(200);
+		$this->assertCount($nbProjets, $crawler->filter('div.card'));
 	}
-
-	public function test_show(): void { } // TODO
-
-	public function test_edit(): void { } // TODO
 
 	/**
 	 * Test l'ajout d'un lien et d'un point
@@ -195,18 +202,12 @@ class ProjetControllerTest
 			$reponse->assertRedirect(route('projet.show', $projet->pro_id));
 			$reponse->assertSessionHas('success', 'Projet mis à jour avec succès.');
 
-			$projetComplet = ProjetComplet::findOrFail($projet->pro_id);
-
 			// Test des suppressions
+			$projetComplet = ProjetComplet::findOrFail($projet->pro_id);
 			$this->assertCount(0, $projetComplet->liens);
 			$this->assertCount(0, $projetComplet->points);
 		} finally {
 			DB::rollBack();
 		}
-
-		// TODO Créer projet
-		// TODO Créer point et lien
-		// TODO update juste projet
-		// TODO vérification pas de point et lien
 	}
 }
