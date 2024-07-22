@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+@php
+    $actif = '';
+	if (isset($menu)) {
+		$actif = $menu;
+	}
+@endphp
+
+        <!DOCTYPE html>
 <html class="h-100"
       data-bs-theme="light"
       lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -26,10 +33,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navBar">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page"
+                    <a class="nav-link {{ ($actif === 'profil') ? 'active' : ''}}"
                        href="{{ route('home') }}">Profil</a>
-                    <a class="nav-link" href="{{ route('projet.index') }}">Projets</a>
-                    <a class="nav-link" href="{{ route('contacts') }}">Contact</a>
+                    <a class="nav-link {{ ($actif === 'projets') ? 'active' : ''}}"
+                       href="{{ route('projet.index') }}">Projets</a>
+                    <a class="nav-link {{ ($actif === 'contact') ? 'active' : ''}}"
+                       href="{{ route('contacts') }}">Contact</a>
                     <a class="nav-link" href="{{ asset('docs/cv.pdf') }}" target="_blank">CV</a>
                 </div>
             </div>
