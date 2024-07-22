@@ -12,6 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
 
     <title>{{ $titre }}</title>
 
@@ -60,19 +61,22 @@
         </div>
 
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-body-secondary" href="#">
+            <li class="ms-3">
+                <a class="text-body-secondary" href="#">
                     <svg class="bi" width="24" height="24">
                         <use xlink:href="#twitter"/>
                     </svg>
                 </a>
             </li>
-            <li class="ms-3"><a class="text-body-secondary" href="#">
+            <li class="ms-3">
+                <a class="text-body-secondary" href="#">
                     <svg class="bi" width="24" height="24">
                         <use xlink:href="#instagram"/>
                     </svg>
                 </a>
             </li>
-            <li class="ms-3"><a class="text-body-secondary" href="#">
+            <li class="ms-3">
+                <a class="text-body-secondary" href="#">
                     <svg class="bi" width="24" height="24">
                         <use xlink:href="#facebook"/>
                     </svg>
