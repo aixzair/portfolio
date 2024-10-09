@@ -62,7 +62,9 @@
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-5">
             <li class="ms-3">
                 <a class="text-body-secondary"
-                   href="www.linkedin.com/in/alexandre-lerosier-b3462b270">
+                   href="https://www.linkedin.com/in/alexandre-lerosier-b3462b270"
+                   target="_blank"
+                >
                     <svg class="bi bi-linkedin" width="24" height="24">
                         <use xlink:href="#linkedin">
                             <symbol id="linkedin" viewBox="0 0 16 16">
