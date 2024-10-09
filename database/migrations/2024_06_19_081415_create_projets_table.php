@@ -18,7 +18,7 @@ return new class
 			$table->string('pro_presentation', 200)->nullable(false);
 			$table->boolean("pro_image")->nullable(false);
 			$table->tinyInteger('pro_nbImage')->nullable(false)->default(0);
-			$table->unsignedBigInteger("ens_id")->nullable(false)->default(false);
+			$table->unsignedBigInteger("ens_id")->nullable(true);
 
 			// Dates
 			$table->timestamp('created_at')

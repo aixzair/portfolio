@@ -1,4 +1,4 @@
-<x-page titre="profil" menu="profil">
+<x-page titre="Profil" menu="profil">
     <div class="row mt-5">
         <section class="col-6 overflow-hidden">
             <img src="{{ asset("images/profil_avatar.png") }}" alt="mon avatar"

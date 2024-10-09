@@ -1,6 +1,6 @@
 @use(Carbon\Carbon)
 
-<x-page titre="projet">
+<x-page :titre="'Projet : ' . $projet->details->pro_nom">
     <i>Année : {{ Carbon::parse($projet->details->pro_date)->format("Y") }}</i>
 
     <h1>{{ $projet->details->pro_nom }}</h1>

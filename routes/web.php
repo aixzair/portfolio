@@ -1,17 +1,30 @@
 <?php
 
+use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\ProjetController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function() {
 	return view('welcome');
-})->name("home");
+})->name('home');
 
 Route::get('/contacts', function() {
 	return view('general/contacts');
-})->name("contacts");
+})->name('contacts');
 
-// Projets
+// Connexion ---------------------------------------------------------------------------------------
+
+route::get(
+	'/login',
+	[ConnexionController::class, 'seConnecter']
+)->name('login')->middleware('guest');
+
+route::post(
+	'/login',
+	[ConnexionController::class, 'connexion']
+)->name('connexion')->middleware('guest');
+
+// Projets -----------------------------------------------------------------------------------------
 
 Route::get(
 	"/projets",
