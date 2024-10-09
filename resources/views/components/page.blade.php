@@ -16,6 +16,7 @@
 
     <title>{{ $titre }}</title>
 
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script type="module" src="{{ asset('js/app.js') }}"></script>
 
     <!-- bootstrap -->

@@ -1,7 +1,7 @@
 <x-page titre="Projets" menu="projets">
-    <div class="row g-3">
+    <div class="row g-3 mt-2">
         @foreach($projets as $projet)
-            <a class="col-md-4 link-underline link-underline-opacity-0"
+            <a class="col-md-4 text-decoration-none"
                href="{{ route("projet.show", ["id" => $projet->pro_id]) }}">
                 <div class="card">
                     @if($projet->pro_image)
