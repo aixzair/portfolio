@@ -25,23 +25,25 @@
 </head>
 <body class="d-flex flex-column h-100">
 <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg border-bottom">
         <div class="container-fluid">
-            <a class="navbar-brand header-font" href="{{ route('home') }}">Alexandre Lerosier</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <a class="navbar-brand header-font text-black" href="{{ route('home') }}">Alexandre
+                Lerosier</a>
+            <button class="navbar-toggler text-black" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navBar" aria-controls="navBar" aria-expanded="false"
                     aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon text-black"></span>
             </button>
             <div class="collapse navbar-collapse" id="navBar">
                 <div class="navbar-nav">
-                    <a class="nav-link {{ ($actif === 'profil') ? 'active' : ''}}"
+                    <a class="nav-link {{ ($actif === 'profil') ? 'active' : ''}} text-black"
                        href="{{ route('home') }}">Profil</a>
-                    <a class="nav-link {{ ($actif === 'projets') ? 'active' : ''}}"
+                    <a class="nav-link {{ ($actif === 'projets') ? 'active' : ''}} text-black"
                        href="{{ route('projet.index') }}">Projets</a>
-                    <a class="nav-link {{ ($actif === 'contact') ? 'active' : ''}}"
+                    <a class="nav-link {{ ($actif === 'contact') ? 'active' : ''}} text-black"
                        href="{{ route('contacts') }}">Contact</a>
-                    <a class="nav-link" href="{{ asset('docs/cv.pdf') }}" target="_blank">CV</a>
+                    <a class="nav-link text-black" href="{{ asset('docs/cv.pdf') }}"
+                       target="_blank">CV</a>
                 </div>
             </div>
         </div>
