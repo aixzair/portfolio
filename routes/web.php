@@ -24,6 +24,11 @@ route::post(
 	[ConnexionController::class, 'connexion']
 )->name('connexion')->middleware('guest');
 
+route::get(
+	'/logout',
+	[ConnexionController::class, 'deconnexion']
+)->name('logout')->middleware('auth');
+
 // Projets -----------------------------------------------------------------------------------------
 
 Route::get(

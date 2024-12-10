@@ -32,10 +32,17 @@ class ConnexionController
 		}
 
 		$request->session()->regenerate();
-		return redirect()->intended();
+
+		return redirect()->intended()
+			->with('success', 'Identification réussie.');
 	}
 
 	public function deconnexion() {
-		// TODO
+		Auth::logout();
+		session()->invalidate();
+		session()->regenerateToken();
+
+		return redirect(route('home'))
+			->with('success', 'Déconnexion réussie.');
 	}
 }
