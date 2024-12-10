@@ -9,15 +9,17 @@ use Illuminate\Notifications\Notifiable;
 /**
  * Modèle des utilisateurs
  *
- * @property string $uti_mail
- * @property string $uti_mdp
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
  */
-class Utilisateurs
+class User
 	extends Authenticatable {
 
 	use HasFactory, Notifiable;
 
-	protected $primaryKey = 'uti_id';
+	protected $primaryKey = 'id';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -25,8 +27,9 @@ class Utilisateurs
 	 * @var array<int, string>
 	 */
 	protected $fillable = [
-		'uti_mail',
-		'uti_mdp',
+		'name',
+		'email',
+		'password'
 	];
 
 	/**
@@ -35,7 +38,7 @@ class Utilisateurs
 	 * @var array<int, string>
 	 */
 	protected $hidden = [
-		'uti_mdp',
+		'password',
 		'remember_token',
 	];
 
@@ -47,7 +50,6 @@ class Utilisateurs
 	protected function casts(): array {
 		return [
 			'email_verified_at' => 'datetime',
-			'uti_mdp' => 'hashed',
 		];
 	}
 }
