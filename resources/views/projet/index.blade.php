@@ -1,4 +1,4 @@
-<x-page titre="Projets" menu="projets">
+<x-page titre="Projets">
     <div class="row g-3 mt-2">
         @foreach($projets as $projet)
             <a class="col-md-4 text-decoration-none"

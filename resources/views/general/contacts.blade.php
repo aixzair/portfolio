@@ -1,4 +1,4 @@
-<x-page titre="Contacts" menu="contact">
+<x-page titre="Contacts">
     <div class=" mx-auto">
         <h1 class="mt-3 fs-2">Mes contacts</h1>
 
