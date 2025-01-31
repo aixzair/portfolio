@@ -36,13 +36,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navBar">
                 <div class="navbar-nav">
-                    <a class="nav-link {{ ($actif === 'profil') ? 'active' : ''}} text-black"
+                    <a class="nav-link {{ ($actif === 'profil') ? 'active' : ''}} text-black hover-underline"
                        href="{{ route('home') }}">Profil</a>
-                    <a class="nav-link {{ ($actif === 'projets') ? 'active' : ''}} text-black"
+                    <a class="nav-link {{ ($actif === 'projets') ? 'active' : ''}} text-black hover-underline"
                        href="{{ route('projet.index') }}">Projets</a>
-                    <a class="nav-link {{ ($actif === 'contact') ? 'active' : ''}} text-black"
+                    <a class="nav-link {{ ($actif === 'contact') ? 'active' : ''}} text-black hover-underline"
                        href="{{ route('contacts') }}">Contact</a>
-                    <a class="nav-link text-black" href="{{ asset('docs/cv.pdf') }}"
+                    <a class="nav-link text-black  hover-underline"
+                       href="{{ asset('docs/cv.pdf') }}"
                        target="_blank">CV (2024)</a>
                 </div>
             </div>
