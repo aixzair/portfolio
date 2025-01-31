@@ -1,16 +1,29 @@
 <?php
 
 use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjetController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function() {
-	return view('welcome');
+	return redirect()->route('profile.presentation');
 })->name('home');
 
-Route::get('/contacts', function() {
-	return view('general/contacts');
-})->name('contacts');
+// ProfileController
+Route::name('profile.')->group(function() {
+	// Presentation
+	Route::get(
+		'/profile/presentation',
+		[ProfileController::class, 'presentation']
+	)->name('presentation');
+
+	// Contacts
+	Route::get(
+		'/profile/contacts',
+		[ProfileController::class, 'contacts']
+	)->name('contacts');
+});
+
 
 // Connexion ---------------------------------------------------------------------------------------
 

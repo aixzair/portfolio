@@ -15,7 +15,7 @@
                     <a class="nav-link text-black hover-underline"
                        href="{{ route('projet.index') }}">Projets</a>
                     <a class="nav-link text-black hover-underline"
-                       href="{{ route('contacts') }}">Contact</a>
+                       href="{{ route('profile.contacts') }}">Contact</a>
                     <a class="nav-link text-black  hover-underline"
                        href="{{ asset('docs/cv.pdf') }}"
                        target="_blank">CV (2024)</a>
