@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjetController;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +8,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function() {
 	return redirect()->route('profile.presentation');
 })->name('home');
+
+// Authentification
+Route::get('/login', [AuthController::class, 'login'])
+	->middleware('guest')
+	->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])
+	->middleware('guest')
+	->name('loginPost');
+Route::get('/logout', [AuthController::class, 'logout'])
+	->middleware('auth')
+	->name('logout');
 
 // ProfileController
 Route::name('profile.')->group(function() {
@@ -23,24 +34,6 @@ Route::name('profile.')->group(function() {
 		[ProfileController::class, 'contacts']
 	)->name('contacts');
 });
-
-
-// Connexion ---------------------------------------------------------------------------------------
-
-route::get(
-	'/login',
-	[ConnexionController::class, 'seConnecter']
-)->name('login')->middleware('guest');
-
-route::post(
-	'/login',
-	[ConnexionController::class, 'connexion']
-)->name('connexion')->middleware('guest');
-
-route::get(
-	'/logout',
-	[ConnexionController::class, 'deconnexion']
-)->name('logout')->middleware('auth');
 
 // Projets -----------------------------------------------------------------------------------------
 
