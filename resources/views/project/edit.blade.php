@@ -6,7 +6,7 @@
 @endphp
 
 <x-page titre="modifier projet">
-    <x-form route="projet.update" :id="$projet->details->pro_id" methode="PUT">
+    <x-form route="project.update" :id="$projet->details->pro_id" methode="PUT">
         <!-- Projet -->
         <fieldset>
             <legend>Projet</legend>

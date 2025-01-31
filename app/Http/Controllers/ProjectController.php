@@ -10,21 +10,14 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
-class ProjetController
+class ProjectController
 	extends BaseController {
-
-	/**
-	 * Store a newly created resource in storage.
-	 */
-	/*public function store(Request $request) {
-		//
-	}*/
 
 	/**
 	 * Display a listing of the resource.
 	 */
 	public function index() {
-		return view("projet/index", [
+		return view("project.index", [
 			"projets" => Projet::all()
 		]);
 	}
@@ -33,13 +26,13 @@ class ProjetController
 	 * Display the specified resource.
 	 */
 	public function show(string $id) {
-		return view("projet/show", [
+		return view("project.show", [
 			"projet" => ProjetComplet::findOrFail($id)
 		]);
 	}
 
 	public function edit(string $id) {
-		return view("projet/edit", [
+		return view("project.edit", [
 			"projet" => ProjetComplet::findOrFail($id)
 		]);
 	}
@@ -140,14 +133,7 @@ class ProjetController
 		}
 
 		return redirect()
-			->route('projet.show', $projet->details->pro_id)
+			->route('project.show', $projet->details->pro_id)
 			->with('success', 'Projet mis à jour avec succès.');
 	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	/*public function destroy(string $id) {
-		//
-	}*/
 }

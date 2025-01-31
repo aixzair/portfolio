@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-class ProfileController {
+class ProfileController
+	extends BaseController {
 
 	/**
 	 * Show my presentation

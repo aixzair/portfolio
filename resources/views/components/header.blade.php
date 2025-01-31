@@ -11,9 +11,9 @@
             <div class="collapse navbar-collapse" id="navBar">
                 <div class="navbar-nav">
                     <a class="nav-link text-black hover-underline"
-                       href="{{ route('home') }}">Profil</a>
+                       href="{{ route('profile.presentation') }}">Profil</a>
                     <a class="nav-link text-black hover-underline"
-                       href="{{ route('projet.index') }}">Projets</a>
+                       href="{{ route('project.index') }}">Projets</a>
                     <a class="nav-link text-black hover-underline"
                        href="{{ route('profile.contacts') }}">Contact</a>
                     <a class="nav-link text-black  hover-underline"

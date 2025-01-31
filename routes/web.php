@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProjetController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function() {
@@ -35,24 +35,29 @@ Route::name('profile.')->group(function() {
 	)->name('contacts');
 });
 
-// Projets -----------------------------------------------------------------------------------------
+// ProjectController
+Route::name('project.')->group(function() {
+	// Index
+	Route::get(
+		"/projets",
+		[ProjectController::class, "index"]
+	)->name("index");
 
-Route::get(
-	"/projets",
-	[ProjetController::class, "index"]
-)->name("projet.index");
+	// Show
+	Route::get(
+		"/projet/{id}",
+		[ProjectController::class, "show"]
+	)->name("show");
 
-Route::get(
-	"/projet/{id}",
-	[ProjetController::class, "show"]
-)->name("projet.show");
+	// Edit
+	Route::get(
+		"/projet/edit/{id}",
+		[ProjectController::class, "edit"]
+	)->name("edit");
 
-Route::get(
-	"/projet/edit/{id}",
-	[ProjetController::class, "edit"]
-)->name("projet.edit");
-
-Route::put(
-	"/projet/update/{id}",
-	[ProjetController::class, "update"]
-)->name("projet.update");
+	// Update
+	Route::put(
+		"/projet/update/{id}",
+		[ProjectController::class, "update"]
+	)->name("update");
+});

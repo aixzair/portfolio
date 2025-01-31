@@ -2,7 +2,7 @@
     <div class="row g-3 mt-2">
         @foreach($projets as $projet)
             <a class="col-md-4 text-decoration-none"
-               href="{{ route("projet.show", ["id" => $projet->pro_id]) }}">
+               href="{{ route("project.show", ["id" => $projet->pro_id]) }}">
                 <div class="card">
                     @if($projet->pro_image)
                         <img src="{{ asset("images/projets/$projet->pro_id/carte.png") }}"

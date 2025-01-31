@@ -45,7 +45,7 @@
 
     <div class="d-flex justify-content-center">
         <a class="btn btn-primary"
-           href="{{ route("projet.edit", ["id" => $projet->details->pro_id]) }}">
+           href="{{ route("project.edit", ["id" => $projet->details->pro_id]) }}">
             Modifier
         </a>
     </div>
