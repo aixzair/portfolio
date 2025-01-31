@@ -43,7 +43,7 @@
                     <a class="nav-link {{ ($actif === 'contact') ? 'active' : ''}} text-black"
                        href="{{ route('contacts') }}">Contact</a>
                     <a class="nav-link text-black" href="{{ asset('docs/cv.pdf') }}"
-                       target="_blank">CV</a>
+                       target="_blank">CV (2024)</a>
                 </div>
             </div>
         </div>
