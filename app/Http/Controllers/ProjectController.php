@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers\ProjetComplet;
 use App\Models\Lien;
 use App\Models\Point_travaille;
 use App\Models\Projet;
-use App\Models\ProjetComplet;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;

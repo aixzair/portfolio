@@ -1,4 +1,4 @@
-@use(App\Models\ProjetComplet)
+@use(App\Managers\ProjetComplet)
 
 @php
     /** @var ProjetComplet $projet */

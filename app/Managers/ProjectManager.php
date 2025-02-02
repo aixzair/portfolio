@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Managers;
 
+use App\Models\Lien;
+use App\Models\Point_travaille;
+use App\Models\Projet;
 use Illuminate\Database\Eloquent\Collection;
 
 readonly class ProjetComplet {

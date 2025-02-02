@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Managers\ProjetComplet;
 use App\Models\Lien;
 use App\Models\Point_travaille;
 use App\Models\Projet;
-use App\Models\ProjetComplet;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\DomCrawler\Crawler;
 use Tests\TestCase;
