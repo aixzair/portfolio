@@ -1,141 +1,85 @@
-@use(App\Managers\ProjetComplet)
+@use(App\Managers\ProjectManager)
 
 @php
-    /** @var ProjetComplet $projet */
-    $oldImageCarte = old('imageCarte', $projet->details->pro_image ? '1' : '0');
+    /** @var ProjectManager $project */
 @endphp
 
-<x-page titre="modifier projet">
-    <x-form route="project.update" :id="$projet->details->pro_id" methode="PUT">
+<x-page titre="Modifier projet">
+    <form method="POST">
+        @csrf
+        @method('PUT')
+
         <!-- Projet -->
         <fieldset>
             <legend>Projet</legend>
-            <!-- Nom -->
-            <div class="input-group my-2">
-                <label class="input-group-text" for="nom">Nom</label>
-                <input type="text" class="form-control" id="nom" name="nom"
-                       value="{{ old('nom', $projet->details->pro_nom) }}" required>
-            </div>
-            <!-- Date -->
-            <div class="input-group my-2">
-                <label class="input-group-text" for="date">Date</label>
-                <input type="date" class="form-control" id="date" name="date"
-                       value="{{ old('date', $projet->details->pro_date) }}"
+            <!-- Name -->
+            <div>
+                <label class="col-form-label">Nome</label>
+                <input class="form-control" type="text" value="{{ $project->details->pro_name }}"
                        required>
             </div>
-            <!-- Présentation -->
-            <div class="input-group my-2">
-                <label class="input-group-text" for="presentation">Présentation</label>
-                <textarea class="form-control" id="presentation" name="presentation" required
-                >{{ old('presentation', $projet->details->pro_presentation) }}</textarea>
+            <!-- Year -->
+            <div>
+                <label class="col-form-label">Date</label>
+                <input class="form-control" type="date" value="{{ $project->details->pro_year }}"
+                       required>
             </div>
-            <!-- Image carte -->
-            <div class="input-group">
-                <div class="input-group-text">Carte image</div>
-                <div class="form-control">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="imageCarte"
-                               id="imgCarteOui" value="1"
-                                {{ $oldImageCarte == '1' ? 'checked' : ''}}>
-                        <label class="form-check-label" for="imgCarteOui">Oui</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="imageCarte"
-                               id="imgCarteNon" value="0"
-                                {{ $oldImageCarte != '1' ? 'checked' : ''}}>
-                        <label class="form-check-label" for="imgCarteNon">Non</label>
-                    </div>
-                </div>
+            <!-- Summary -->
+            <div>
+                <label class="col-form-label">Présentation</label>
+                <input class="form-control" type="text" value="{{ $project->details->pro_summary }}"
+                       required>
             </div>
-        </fieldset>
-        <!-- Liens -->
-        <fieldset>
-            <legend>Liens</legend>
-            <div id="listeLiens">
-                @foreach($projet->liens as $i => $lien)
-                    <div>
-                        <div>Lien {{ $i + 1 }}</div>
-                        <!-- Nom -->
-                        <div class="input-group my-2">
-                            <label class="input-group-text" for="liens[{{ $i }}][nom]">Nom</label>
-                            <input class="form-control" type="text" name="liens[{{ $i }}][nom]"
-                                   value="{{ $lien->lien_nom }}" required>
-                        </div>
-                        <!-- Destination -->
-                        <div class="input-group my-2">
-                            <label class="input-group-text"
-                                   for="liens[{{ $i }}][destination]">Lien</label>
-                            <input class="form-control" type="text"
-                                   name="liens[{{ $i }}][destination]"
-                                   value="{{ $lien->lien_destination }}" required>
-                        </div>
-                        <!-- Suppression -->
-                        <input type="hidden" name="liens[{{ $i }}][suppression]"
-                               value="0">
-                        <!-- Id -->
-                        <input type="hidden" name="liens[{{ $i }}][id]"
-                               value="{{ $lien->lien_id }}">
-                        <!-- Bouton suppression -->
-                        <button type="button" class="btn btn-danger btn-sm mb-2 dform-suppr"
-                                data-dform-suppr="liens[{{ $i }}][suppression]">
-                            Supprimer
-                        </button>
-                    </div>
-                @endforeach
-                <!-- TODO old -->
-            </div>
-            <button type="button" class="btn btn-secondary dform" data-dform="listeLiens"
-                    data-dform-type="projetLien">
-                Ajouter
-            </button>
-        </fieldset>
-        <!-- Points travaillés -->
-        <fieldset>
-            <legend>Points travaillés</legend>
-            <div id="listePoints">
-                <!-- TODO -->
-                @foreach($projet->points as $i => $point)
-                    <div>
-                        <div>Point {{ $i + 1 }}</div>
-                        <!-- Point nom -->
-                        <div class="input-group my-2">
-                            <label class="input-group-text"
-                                   for="points[{{ $i }}][nom]">Nom</label>
-                            <input class="form-control" name="points[{{ $i }}][nom]" type="text"
-                                   value="{{ old("points[$i][nom]", $point->poi_nom) }}">
-                        </div>
-                        <!-- Point description -->
-                        <div class="input-group my-2">
-                            <label class="input-group-text"
-                                   for="points[{{ $i }}][description]">Description</label>
-                            <textarea class="form-control"
-                                      name="points[{{ $i }}][description]"
-                            >{{ old("points[$i][description]", $point->poi_definition) }}</textarea>
-                        </div>
-                        <!-- Point suppression -->
-                        <input type="hidden" name="points[{{ $i }}][suppression]" value="0">
-                        <!-- Point id -->
-                        <input type="hidden" name="points[{{ $i }}][id]"
-                               value="{{ $point->poi_id }}">
-                        <!-- Point suppression -->
-                        <button type="button" class="btn btn-danger btn-sm mb-2 dform-suppr"
-                                data-dform-suppr="points[{{ $i }}][suppression]">
-                            Supprimer
-                        </button>
-                    </div>
-                @endforeach
-            </div>
-            <button type="button" class="btn btn-secondary dform" data-dform="listePoints"
-                    data-dform-type="pointTravaille">
-                Ajouter
-            </button>
-        </fieldset>
-        <fieldset>
-            <legend>Aperçus</legend>
         </fieldset>
 
-        <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary">Valider</button>
+        <!-- Links -->
+        <fieldset>
+            <legend>Liens</legend>
+            <div>
+                @foreach($project->links as $i => $link)
+                    <div>
+                        <span>Lien {{ $i + 1 }}</span>
+                        <!-- label -->
+                        <div>
+                            <label class="col-form-label">Nom</label>
+                            <input class="form-control" type="text" value="{{ $link->lin_label }}"
+                                   required>
+                        </div>
+                        <!-- href -->
+                        <div>
+                            <label class="col-form-label">Destination</label>
+                            <input class="form-control" type="text" value="{{ $link->lin_href }}"
+                                   required>
+                        </div>
+                    </div>
+                @endforeach
+                <button type="button" class="btn btn-primary">Ajouter un lien</button>
+            </div>
+        </fieldset>
+
+        <!-- Tools -->
+        <fieldset>
+            <legend>Outils</legend>
+            <div>
+                @foreach($project->tools as $i => $tool)
+                    <div>
+                        <div>Outils {{ $i + 1 }}</div>
+                        <!-- Label -->
+                        <div>
+                            <label class="col-form-label">Description</label>
+                            <input class="form-control" type="text" value="{{ $tool->too_label }}"
+                                   required>
+                        </div>
+                    </div>
+                @endforeach
+                <button type="button" class="btn btn-primary">Ajouter un outils</button>
+            </div>
+        </fieldset>
+
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary">Retour</button>
+            <button type="reset" class="btn btn-secondary">Valeurs par défaut</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
-    </x-form>
+    </form>
 </x-page>

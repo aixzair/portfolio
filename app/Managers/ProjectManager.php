@@ -2,30 +2,29 @@
 
 namespace App\Managers;
 
-use App\Models\Lien;
-use App\Models\Point_travaille;
-use App\Models\Projet;
+use App\Models\Link;
+use App\Models\Project;
+use App\Models\Tool;
 use Illuminate\Database\Eloquent\Collection;
 
-readonly class ProjetComplet {
-	public Projet $details;
+class ProjectManager {
+	public Project $details;
+	public Collection|array $links;
+	public Collection|array $tools;
 
 	/**
-	 * @var Collection|Lien[]
+	 * Find all data for a project
+	 *
+	 * @param string $id
+	 * @return ProjectManager
 	 */
-	public Collection|array $liens;
+	public static function findOrFail(string $id): ProjectManager {
+		$project = new ProjectManager();
 
-	/**
-	 * @var Collection|Point_travaille[]
-	 */
-	public Collection|array $points;
+		$project->details = Project::findOrFail($id);
+		$project->links = Link::where('pro_id', $id)->get();
+		$project->tools = Tool::where('pro_id', $id)->get();
 
-	public static function findOrFail(string $id): ProjetComplet {
-		$projet = new ProjetComplet();
-		$projet->details = Projet::findOrFail($id);
-		$projet->liens = Lien::where('pro_id', $id)->get();
-		$projet->points = Point_travaille::where('pro_id', $id)->get();
-
-		return $projet;
+		return $project;
 	}
 }

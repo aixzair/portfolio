@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Managers\ProjetComplet;
-use App\Models\Lien;
-use App\Models\Point_travaille;
-use App\Models\Projet;
-use Exception;
-use Illuminate\Database\QueryException;
-use Illuminate\Http\Request;
+use App\Managers\ProjectManager;
+use App\Models\Project;
 
 class ProjectController
 	extends BaseController {
@@ -18,7 +13,7 @@ class ProjectController
 	 */
 	public function index() {
 		return view("project.index", [
-			"projets" => Projet::all()
+			"projects" => Project::all()
 		]);
 	}
 
@@ -27,21 +22,21 @@ class ProjectController
 	 */
 	public function show(string $id) {
 		return view("project.show", [
-			"projet" => ProjetComplet::findOrFail($id)
+			"project" => ProjectManager::findOrFail($id)
 		]);
 	}
 
 	public function edit(string $id) {
 		return view("project.edit", [
-			"projet" => ProjetComplet::findOrFail($id)
+			"project" => ProjectManager::findOrFail($id)
 		]);
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, string $id) {
-		$projet = ProjetComplet::findOrFail($id);
+	/*public function update(Request $request, string $id) {
+		$project = ProjectManager::findOrFail($id);
 		$request->validate([
 			'nom' => 'required|string|max:50',
 			'date' => 'required|date',
@@ -55,7 +50,7 @@ class ProjectController
 
 		try {
 			// Met à jour le projet
-			$projet->details->update([
+			$project->details->update([
 				'pro_nom' => $request->input('nom'),
 				'pro_presentation' => $request->input('presentation'),
 				'pro_date' => $request->input('date'),
@@ -135,5 +130,5 @@ class ProjectController
 		return redirect()
 			->route('project.show', $projet->details->pro_id)
 			->with('success', 'Projet mis à jour avec succès.');
-	}
+	}*/
 }

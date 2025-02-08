@@ -39,25 +39,27 @@ Route::name('profile.')->group(function() {
 Route::name('project.')->group(function() {
 	// Index
 	Route::get(
-		"/projets",
+		"/projects",
 		[ProjectController::class, "index"]
 	)->name("index");
 
 	// Show
 	Route::get(
-		"/projet/{id}",
+		"/project/{id}",
 		[ProjectController::class, "show"]
 	)->name("show");
 
 	// Edit
 	Route::get(
-		"/projet/edit/{id}",
+		"/project/edit/{id}",
 		[ProjectController::class, "edit"]
-	)->name("edit");
+	)->middleware('auth')
+		->name("edit");
 
 	// Update
 	Route::put(
-		"/projet/update/{id}",
+		"/project/update/{id}",
 		[ProjectController::class, "update"]
-	)->name("update");
+	)->middleware('auth')
+		->name("update");
 });
