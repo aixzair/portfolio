@@ -1,10 +1,10 @@
 @use(Carbon\Carbon)
 
-<x-page :titre="'Projet : ' . $project->details->pro_name">
-    <i>Année : {{ $project->details->pro_year }}</i>
+<x-page :titre="'Projet : ' . $project->pro_name">
+    <i>Année : {{ $project->pro_year }}</i>
 
-    <h1>{{ $project->details->pro_name }}</h1>
-    <p>{{ $project->details->pro_summary }}</p>
+    <h1>{{ $project->pro_name }}</h1>
+    <p>{{ $project->pro_summary }}</p>
 
     @if($project->links->isNotEmpty())
         <h2>Liens vers le projet</h2>
@@ -18,14 +18,14 @@
         </ul>
     @endif
 
-    @if ($project->details->pro_nbPicture > 0)
+    @if ($project->pro_nbPicture > 0)
         <h2>Aperçu</h2>
         <div class="row g-2 justify-content-around">
-            @for($i = 1 ; $i <= $project->details->pro_nbPicture ; $i++)
+            @for($i = 1 ; $i <= $project->pro_nbPicture ; $i++)
                 <div class="row col-4">
                     <img class="p-3 col-12"
                          src="{{ asset('images/projets/'
-                            . $project->details->pro_id . '/img' . $i .'.png') }}"
+                            . $project->pro_id . '/img' . $i .'.png') }}"
                          alt="image {{ $i }}">
                 </div>
             @endfor
@@ -35,7 +35,7 @@
     <!-- TODO : authaurization -->
     <div class="d-flex justify-content-center">
         <a class="btn btn-primary"
-           href="{{ route("project.edit", ["id" => $project->details->pro_id]) }}">
+           href="{{ route("project.edit", ["id" => $project->pro_id]) }}">
             Modifier
         </a>
     </div>

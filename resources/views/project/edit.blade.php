@@ -1,15 +1,15 @@
 @use(App\Managers\ProjectManager)
 
 @php
-    /** @var ProjectManager $project */
+    /** @var Project $project */
 @endphp
 
 <x-page titre="Modifier projet">
     <div class="d-flex justify-content-center">
-        <h1>Projet : {{ $project->details->pro_name }}</h1>
+        <h1>Projet : {{ $project->pro_name }}</h1>
     </div>
 
-    <form action="{{ route('project.update', $project->details->pro_id) }}"
+    <form action="{{ route('project.update', $project->pro_id) }}"
           method="POST">
         @csrf
         @method('PUT')
@@ -22,13 +22,13 @@
                 <div class="col-md-8 col-sm-6">
                     <label for="name" class="col-form-label">Nom</label>
                     <input name="name" class="form-control" type="text"
-                           value="{{ $project->details->pro_name }}"
+                           value="{{ $project->pro_name }}"
                            maxlength="50" required>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <label for="year" class="col-form-label">Année</label>
                     <input name="year" class="form-control" type="number"
-                           value="{{ $project->details->pro_year }}"
+                           value="{{ $project->pro_year }}"
                            min="2000" max="2100" required>
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <div>
                 <label for="summary" class="col-form-label">Présentation</label>
                 <textarea name="summary" class="form-control" maxlength="200" required
-                >{{ $project->details->pro_summary }}</textarea>
+                >{{ $project->pro_summary }}</textarea>
             </div>
         </fieldset>
 
@@ -51,7 +51,7 @@
                                 <span class="h4">{{ $link->lin_label }}</span>
                             </div>
                             <!-- id -->
-                            <input name="links[{{ $i }}][id]" type="text"
+                            <input name="links[{{ $i }}][id]" type="number"
                                    value="{{ $link->lin_id }}" hidden required>
                             <!-- label -->
                             <div class="my-2">
@@ -76,9 +76,11 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-md-6 m-2">
-                    <button type="button" class="btn btn-secondary">Ajouter un lien</button>
-                </div>
+            </div>
+            <div class="my-2">
+                <button type="button" id="link-add" class="btn btn-secondary">
+                    Ajouter un lien
+                </button>
             </div>
         </fieldset>
 
@@ -89,6 +91,10 @@
                 @foreach($project->tools as $i => $tool)
                     <div class="col-md-6">
                         <div class="my-2 row">
+                            <!-- id -->
+                            <input name="tools[{{ $i }}][id]" type="number"
+                                   value="{{ $tool->too_id }}" hidden required>
+                            <!-- label -->
                             <div class="col-9">
                                 <label for="tools[{{ $i }}][label]" hidden></label>
                                 <input name="tools[{{ $i }}][label]" class="form-control"
@@ -102,9 +108,11 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-secondary">Ajouter un outils</button>
-                </div>
+            </div>
+            <div class="my-2">
+                <button type="button" id="tool-add" class="btn btn-secondary">
+                    Ajouter un outils
+                </button>
             </div>
         </fieldset>
 
@@ -114,4 +122,72 @@
             <button type="submit" class="btn btn-success">Enregistrer</button>
         </div>
     </form>
+
+    <!-- templates -->
+    <template id="link-template">
+        <div class="col-md-6">
+            <div class="border rounded m-2 p-2">
+                <div class="d-flex justify-content-center">
+                    <span class="h4">Nouveau lien</span>
+                </div>
+                <!-- label -->
+                <div class="my-2">
+                    <label for="links[__INDEX__][label]"
+                           class="col-form-label">Nom</label>
+                    <input name="links[__INDEX__][label]" class="form-control"
+                           type="text"
+                           maxlength="100" required>
+                </div>
+                <!-- href -->
+                <div class="my-2">
+                    <label for="links[__INDEX__][href]"
+                           class="col-form-label">Destination</label>
+                    <input name="links[__INDEX__][href]" class="form-control" type="text"
+                           maxlength="100" required>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="button" class="btn btn-danger">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tool-template">
+        <div class="col-md-6">
+            <div class="my-2 row">
+                <!-- label -->
+                <div class="col-9">
+                    <label for="tools[__INDEX__][label]" hidden></label>
+                    <input name="tools[__INDEX][label]" class="form-control"
+                           type="text" maxlength="50"
+                           placeholder="Description" required>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-danger">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script defer>
+        const LINKS = document.getElementById('links');
+        const LINK_ADD_BUTTON = document.getElementById('link-add');
+        const LINK_TEMPLATE = document.getElementById('link-template').innerHTML;
+        const TOOLS = document.getElementById('tools');
+        const TOOL_ADD_BUTTON = document.getElementById('tool-add');
+        const TOOL_TEMPLATE = document.getElementById('tool-template').innerHTML;
+
+        let nextLinkNumber = LINKS.children.length;
+        let nextToolNumber = TOOLS.children.length;
+
+        LINK_ADD_BUTTON.addEventListener('click', () => {
+            const link = LINK_TEMPLATE.replace(/__INDEX__/g, String(nextLinkNumber++));
+            LINKS.insertAdjacentHTML('beforeend', link);
+        });
+
+        TOOL_ADD_BUTTON.addEventListener('click', () => {
+            const tool = TOOL_TEMPLATE.replace(/__INDEX__/g, String(nextToolNumber++));
+            TOOLS.insertAdjacentHTML('beforeend', tool);
+        });
+    </script>
 </x-page>
