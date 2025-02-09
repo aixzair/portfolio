@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Managers\ProjectManager;
 use App\Models\Project;
+use Illuminate\Http\Request;
 
 class ProjectController
 	extends BaseController {
@@ -35,8 +36,28 @@ class ProjectController
 	/**
 	 * Update the specified resource in storage.
 	 */
-	/*public function update(Request $request, string $id) {
+	public function update(Request $request, string $id) {
 		$project = ProjectManager::findOrFail($id);
+
+		$validated = $request->validate([
+			'name' => 'required|string|max:50',
+			'year' => 'required|integer|min:2000|max:2100',
+			'summary' => 'required|max:200',
+			//'links.*.label' => 'required|string|max:100',
+			//'links.*.href' => 'required|string|max:100',
+			//'tool.*.label' => 'required|string|max:50'
+		]);
+
+		$project->details->pro_name = $validated['name'];
+		$project->details->pro_year = $validated['year'];
+		$project->details->pro_summary = $validated['summary'];
+		$project->details->save();
+
+		return redirect()
+			->route('project.show', $project->details->pro_id)
+			->with('success', 'Projet mis à jour avec succès.');
+
+		/*$project = ProjectManager::findOrFail($id);
 		$request->validate([
 			'nom' => 'required|string|max:50',
 			'date' => 'required|date',
@@ -129,6 +150,6 @@ class ProjectController
 
 		return redirect()
 			->route('project.show', $projet->details->pro_id)
-			->with('success', 'Projet mis à jour avec succès.');
-	}*/
+			->with('success', 'Projet mis à jour avec succès.');*/
+	}
 }

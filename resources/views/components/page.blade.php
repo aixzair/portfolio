@@ -35,7 +35,9 @@
         </div>
     @endif
 
-    {{ $slot }}
+    <div class="py-2">
+        {{ $slot }}
+    </div>
 </main>
 
 <x-footer/>
