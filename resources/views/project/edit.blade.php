@@ -1,5 +1,3 @@
-@use(App\Managers\ProjectManager)
-
 @php
     /** @var Project $project */
 @endphp
@@ -146,7 +144,9 @@
                            maxlength="100" required>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    <button type="button" class="btn btn-danger">Supprimer</button>
+                    <button id="links[__INDEX__][cancel]" type="button" class="btn btn-danger">
+                        Annuler
+                    </button>
                 </div>
             </div>
         </div>
@@ -159,35 +159,16 @@
                 <div class="col-9">
                     <label for="tools[__INDEX__][label]" hidden></label>
                     <input name="tools[__INDEX][label]" class="form-control"
-                           type="text" maxlength="50"
-                           placeholder="Description" required>
+                           type="text" maxlength="50" placeholder="Description" required>
                 </div>
                 <div class="col-3">
-                    <button type="button" class="btn btn-danger">Supprimer</button>
+                    <button name="tools[__INDEX__][cancel]" type="button" class="btn btn-danger">
+                        Annuler
+                    </button>
                 </div>
             </div>
         </div>
     </template>
 
-    <script defer>
-        const LINKS = document.getElementById('links');
-        const LINK_ADD_BUTTON = document.getElementById('link-add');
-        const LINK_TEMPLATE = document.getElementById('link-template').innerHTML;
-        const TOOLS = document.getElementById('tools');
-        const TOOL_ADD_BUTTON = document.getElementById('tool-add');
-        const TOOL_TEMPLATE = document.getElementById('tool-template').innerHTML;
-
-        let nextLinkNumber = LINKS.children.length;
-        let nextToolNumber = TOOLS.children.length;
-
-        LINK_ADD_BUTTON.addEventListener('click', () => {
-            const link = LINK_TEMPLATE.replace(/__INDEX__/g, String(nextLinkNumber++));
-            LINKS.insertAdjacentHTML('beforeend', link);
-        });
-
-        TOOL_ADD_BUTTON.addEventListener('click', () => {
-            const tool = TOOL_TEMPLATE.replace(/__INDEX__/g, String(nextToolNumber++));
-            TOOLS.insertAdjacentHTML('beforeend', tool);
-        });
-    </script>
+    <script defer src="{{ asset('js/app/project/edit.js') }}"></script>
 </x-page>
