@@ -162,7 +162,7 @@
                            type="text" maxlength="50" placeholder="Description" required>
                 </div>
                 <div class="col-3">
-                    <button name="tools[__INDEX__][cancel]" type="button" class="btn btn-danger">
+                    <button id="tools[__INDEX__][cancel]" type="button" class="btn btn-danger">
                         Annuler
                     </button>
                 </div>

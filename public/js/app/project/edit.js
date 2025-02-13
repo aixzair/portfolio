@@ -1,13 +1,13 @@
+// Links DForm -------------------------------------------------------------------------------------
+
 const LINKS = document.getElementById('links');
 const LINK_ADD_BUTTON = document.getElementById('link-add');
-const LINK_TEMPLATE = document.getElementById('link-template').content.firstElementChild;
-const TOOLS = document.getElementById('tools');
-const TOOL_ADD_BUTTON = document.getElementById('tool-add');
-const TOOL_TEMPLATE = document.getElementById('tool-template').innerHTML;
+const LINK_TEMPLATE = document.getElementById('link-template')
+    .content.firstElementChild;
 
 let nextLinkNumber = LINKS.children.length;
-let nextToolNumber = TOOLS.children.length;
 
+// Insert a form for a new link
 LINK_ADD_BUTTON.addEventListener('click', () => {
     const number = nextLinkNumber++;
 
@@ -23,7 +23,27 @@ LINK_ADD_BUTTON.addEventListener('click', () => {
     });
 });
 
+// Tools DForm -------------------------------------------------------------------------------------
+
+const TOOLS = document.getElementById('tools');
+const TOOL_ADD_BUTTON = document.getElementById('tool-add');
+const TOOL_TEMPLATE = document.getElementById('tool-template')
+    .content.firstElementChild;
+
+let nextToolNumber = TOOLS.children.length;
+
+// Insert a new form for a tool
 TOOL_ADD_BUTTON.addEventListener('click', () => {
-    const tool = TOOL_TEMPLATE.replace(/__INDEX__/g, String(nextToolNumber++));
-    TOOLS.insertAdjacentHTML('beforeend', tool);
+    const number = nextToolNumber++;
+
+    // Add a new element
+    const tool = TOOL_TEMPLATE.cloneNode(true);
+    tool.innerHTML = tool.innerHTML.replace(/__INDEX__/g, String(number));
+    TOOLS.appendChild(tool);
+
+    // Add event to delete element
+    const button = document.getElementById(`tools[${number}][cancel]`)
+    button.addEventListener('click', () => {
+        tool.remove();
+    });
 });
