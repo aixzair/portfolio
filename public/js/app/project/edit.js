@@ -1,3 +1,37 @@
+// Links -------------------------------------------------------------------------------------------
+
+document.querySelectorAll('[data-link-delete]').forEach(button => {
+    button.addEventListener('click', event => {
+        const projet = event.target.closest('[data-link]');
+        const disabled = projet.dataset.link === 'false';
+
+        projet.querySelectorAll('input').forEach(input => {
+            input.disabled = disabled;
+        });
+
+        projet.dataset.link = disabled
+            ? "true"
+            : "false";
+    });
+});
+
+// Tools -------------------------------------------------------------------------------------------
+
+document.querySelectorAll('[data-tool-delete]').forEach(button => {
+    button.addEventListener('click', event => {
+        const projet = event.target.closest('[data-tool]');
+        const disabled = projet.dataset.tool === 'false';
+
+        projet.querySelectorAll('input').forEach(input => {
+            input.disabled = disabled;
+        });
+
+        projet.dataset.tool = disabled
+            ? "true"
+            : "false";
+    });
+});
+
 // Links DForm -------------------------------------------------------------------------------------
 
 const LINKS = document.getElementById('links');
@@ -42,7 +76,7 @@ TOOL_ADD_BUTTON.addEventListener('click', () => {
     TOOLS.appendChild(tool);
 
     // Add event to delete element
-    const button = document.getElementById(`tools[${number}][cancel]`)
+    const button = document.getElementById(`tools[${number}][cancel]`);
     button.addEventListener('click', () => {
         tool.remove();
     });

@@ -43,7 +43,7 @@
             <legend>Liens</legend>
             <div id="links" class="row">
                 @foreach($project->links as $i => $link)
-                    <div class="col-md-6">
+                    <div data-link="false" class="col-md-6">
                         <div class="border rounded m-2 p-2">
                             <div class="d-flex justify-content-center">
                                 <span class="h4">{{ $link->lin_label }}</span>
@@ -69,7 +69,10 @@
                                        maxlength="100" required>
                             </div>
                             <div class="d-flex justify-content-center mt-3">
-                                <button type="button" class="btn btn-danger">Supprimer</button>
+                                <button data-link-delete type="button"
+                                        class="btn btn-danger">
+                                    Supprimer
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -87,7 +90,7 @@
             <legend>Outils</legend>
             <div id="tools" class="row">
                 @foreach($project->tools as $i => $tool)
-                    <div class="col-md-6">
+                    <div data-tool="false" class="col-md-6">
                         <div class="my-2 row">
                             <!-- id -->
                             <input name="tools[{{ $i }}][id]" type="number"
@@ -101,7 +104,9 @@
                                        maxlength="50" required>
                             </div>
                             <div class="col-3">
-                                <button type="button" class="btn btn-danger">Supprimer</button>
+                                <button data-tool-delete type="button" class="btn btn-danger">
+                                    Supprimer
+                                </button>
                             </div>
                         </div>
                     </div>
