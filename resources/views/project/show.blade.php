@@ -18,6 +18,15 @@
         </ul>
     @endif
 
+    @if($project->tools->isNotEmpty())
+        <h2>Langages et outils</h2>
+        <ul>
+            @foreach($project->tools as $tool)
+                <li>{{ $tool->too_label }}</li>
+            @endforeach
+        </ul>
+    @endif
+
     @if ($project->pro_nbPicture > 0)
         <h2>Aperçu</h2>
         <div class="row g-2 justify-content-around">
@@ -32,11 +41,12 @@
         </div>
     @endif
 
-    <!-- TODO : authaurization -->
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-primary"
-           href="{{ route("project.edit", ["id" => $project->pro_id]) }}">
-            Modifier
-        </a>
-    </div>
+    @auth
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary"
+               href="{{ route("project.edit", ["id" => $project->pro_id]) }}">
+                Modifier
+            </a>
+        </div>
+    @endauth
 </x-page>
